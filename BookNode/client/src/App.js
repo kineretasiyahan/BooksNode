@@ -1,7 +1,6 @@
-import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
-import AppRouter from '../src/Components/routing/AppRouter'
-import NavBar  from "../src/Components/Features/navBar/NavBar";
+import AppRouter from './components/routing/AppRouter';
+import NavBar from './components/Features/navBar/NavBar';
 
 function App() {
   return (
@@ -11,7 +10,7 @@ function App() {
         <AppRouter/>
       </Router>
     // </div>
-  );
+  )
 }
 
 export default App;
