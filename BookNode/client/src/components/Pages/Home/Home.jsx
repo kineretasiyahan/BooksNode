@@ -1,12 +1,23 @@
 import React from 'react'
 
-const Home =()=> {
+function Home() {
     return (
         <div>
-         <h1> Hello world</h1>
+               <h1> Hello world</h1>
         </div>
     )
 }
 
+export default Home
 
-export default Home;
+
+
+// import React from 'react'
+
+// const Home =()=> {
+//     return (
+//         <div>
+//          <h1> Hello world</h1>
+//         </div>
+//     )
+// }
