@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Switch } from 'react-router-dom'
-import Home from "../Pages/Home/Home";
+import Home from "../Pages/home/Home";
 import  Payment  from "../Pages/payment/Payment";
-import UserPage from "../Pages/userPage/UserPage";
+// import UserPage from "../Pages/userPage/UserPage";
 import Contact from '../Pages/contactUs/Contact'
 import Abut from '../Pages/about/About';
 import Books from '../Pages/books/Books'
