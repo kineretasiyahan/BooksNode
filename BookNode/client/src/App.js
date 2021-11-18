@@ -1,6 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import AppRouter from './Components/routing/AppRouter';
-import NavBar from './Components/Features/navBar/NavBar'
+import AppRouter from './components/routing/AppRouter'
+import NavBar from './components/Features/navBar/NavBar'
 
 
 function App() {
@@ -11,5 +11,4 @@ function App() {
       </Router>
   )
 }
-
 export default App;
