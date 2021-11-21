@@ -1,13 +1,13 @@
-// import React from 'react'
+import React from 'react'
 
-// const Button= (props)=> {
-//     return (
+const Button= (props)=> {
+    return (
  
-//             <button 
-//             // className={myClass} 
-//             onClick={props.handleClick}>{props.children}</button>
+            <button 
+          
+            onClick={props.handleClick}>{props.children}</button>
 
-//     )
-// }
+    )
+}
 
-// export default Button
+export default Button
