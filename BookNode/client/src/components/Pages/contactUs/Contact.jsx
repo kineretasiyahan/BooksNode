@@ -1,9 +1,16 @@
-import React from 'react'
+import React,{useState} from 'react'
+import Input from '../../Features/input/Input'
+
 
 const Contact = () => {
+
+
     return (
         <div>
-        <h1>ContactUs</h1>    
+        <h1>Contact</h1> 
+         <Input type="text"
+         name="firstNmae"
+          />
         </div>
     )
 }
