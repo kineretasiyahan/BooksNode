@@ -1,12 +1,10 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import AppRouter from './Components/routing/AppRouter';
-import NavBar from './Components/Features/navBar/NavBar'
+import AppRouter from './components/routing/AppRouter';
 
 
 function App() {
   return (
       <Router>
-      <NavBar />
         <AppRouter/>
       </Router>
   )
