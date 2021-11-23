@@ -8,20 +8,20 @@ const NavBar = () => {
     <div className="navbar-continer">
       <div className="navbar-logo-div">
         <h4 className="navbar-logo">
-          B{<ImBook />} {<ImBook />}k Node
+          B{<ImBook />}{<ImBook />}k Node
         </h4>
       </div>
       <div className="navbar-links-div">
-        <Link to="/">Home</Link>
-        <Link to="/Books">Books</Link>
-        <Link to="Abut">Abut</Link>
-        <Link to="/Payment">Payment</Link>
-        <Link to="/Contact">Contact</Link>
+        <Link className="link" to="/">Home</Link>
+        <Link className="link" to="/Books">Books</Link>
+        <Link className="link" to="Abut">Abut</Link>
+        <Link className="link" to="/Payment">Payment</Link>
+        <Link className="link" to="/Contact">Contact</Link>
       </div>
 
       <div className="navbar-links-div-sign/login">
-        <Link to="Register">Sign-in</Link>
-        <Link to="Login">Login</Link>
+        <Link className="link-sign" to="Register">Sign-in</Link>
+        <Link className="link-login" to="Login">Login</Link>
       </div>
     </div>
   );
