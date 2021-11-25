@@ -1,16 +1,17 @@
 const Input = (props) => {
-    const { type, name, placeholder, handleChange } = props;
-  
-    return (
-      <input
-        class="input"
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        onChange={handleChange}
-        required
-      />
-    );
-  };
-  
-  export default Input;
+  const { type, name, value, placeholder, handleChange } = props;
+
+  return (
+    <input
+      className="input"
+      type={type}
+      name={name}
+      value={value}
+      placeholder={placeholder}
+      onChange={handleChange}
+      required
+    />
+  );
+};
+
+export default Input;
