@@ -70,6 +70,10 @@ const deleteeUser = async (req, res) => {
 }
 const register = async (req, res) => {
     try {
+        const validData = userValidate(req.body.user)
+        if (validData.error) {
+            res.json(validData.error.details)
+        }
         await userModel.findOne({ email: req.body.email }).then((user) => {
             if (user) {
                 res.status(400).json({ email: "email already exists" })
@@ -87,10 +91,9 @@ const register = async (req, res) => {
                         if (error) throw error;
                         newUser.password = hash;
                         newUser.save()
-                            .then((data) => res.json(data))
+                            .then((data) => { res.json(data)})
                             .catch((err) => { console.log("someting wrong") })
                     })
-
                 })
 
             }

@@ -14,7 +14,6 @@ function Home() {
       });
   }, []);
 
-  
   return (
     <div>
       <h2>The most popular books...</h2>
@@ -27,7 +26,7 @@ function Home() {
               <h5>{book.author}</h5>
               <p>{book.summary}</p>
               <button>
-                <i>Add to {<ImCart />}</i>
+                <i>Add to{<ImCart/>}</i>
               </button>
             </div>
           );
@@ -36,15 +35,5 @@ function Home() {
     </div>
   );
 }
-
 export default Home;
 
-// import React from 'react'
-
-// const Home =()=> {
-//     return (
-//         <div>
-//          <h1> Hello world</h1>
-//         </div>
-//     )
-// }
