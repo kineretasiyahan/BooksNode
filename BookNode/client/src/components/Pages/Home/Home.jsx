@@ -11,7 +11,6 @@ const Home = () => {
   useEffect(() => {
     getAllBooks()
       .then((res) => res.json())
-      // .then((res)=>console.log(res.data))
       .then((res) => setBook(res.data));
   }, []);
   const onChangeInput = (e) => {
@@ -23,8 +22,6 @@ const Home = () => {
       let rg = new RegExp(`^${curentValue.toUpperCase()}`);
         return book.author.toUpperCase().match(rg);
 
-<<<<<<< HEAD
-=======
     });
 
     console.log(searchResult);
@@ -36,7 +33,6 @@ const Home = () => {
   } else {
     mathArray = books;
   }
->>>>>>> e9885aeb465627873f980b35c1cd5cca358a64fe
   return (
     <div>
       <Input
@@ -68,11 +64,5 @@ const Home = () => {
       })}
     </div>
   );
-<<<<<<< HEAD
-}
-export default Home;
-
-=======
 };
 export default Home;
->>>>>>> e9885aeb465627873f980b35c1cd5cca358a64fe

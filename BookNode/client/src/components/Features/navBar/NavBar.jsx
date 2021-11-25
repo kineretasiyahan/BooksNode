@@ -8,7 +8,7 @@ const NavBar = () => {
     <div className="navbar-continer">
       <div className="navbar-logo-div">
         <h4 className="navbar-logo">
-          B{<ImBook />}{<ImBook />}k Node
+          B{<ImBook className="navbar-logo" />}{<ImBook className="navbar-logo"/>}knode
         </h4>
       </div>
       <div className="navbar-links-div">
@@ -19,7 +19,7 @@ const NavBar = () => {
         <Link className="link" to="/Contact">Contact</Link>
       </div>
 
-      <div className="navbar-links-div-sign/login">
+      <div className="navbar-links-div-sign-login">
         <Link className="link-sign" to="Register">Sign-in</Link>
         <Link className="link-login" to="Login">Login</Link>
       </div>
