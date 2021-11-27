@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { simulation } from "../../simulation";
 import { ImCart, ImHeart, ImUser } from "react-icons/im";
 import { getAllBooks } from "../../../service/books";
+<<<<<<< HEAD
+// import Button from "../../Features/button/Button";
+=======
+>>>>>>> d981a814ac32e869c8e1dc86efc827d607685a98
 import Input from "../../Features/input/Input";
 import Image from "../../Features/image/Image";
 import "./home.scss";
@@ -9,8 +13,12 @@ import "./home.scss";
 const Home = () => {
   const [books, setBook] = useState([]);
   const [input, setInput] = useState("");
+<<<<<<< HEAD
+  const [booksbbb, setBookbbb] = useState(books);
+=======
   const [searchBookResult, setSearchBookResult] = useState([books]);
   const [heightImg, setHeightImg] = useState(800);
+>>>>>>> d981a814ac32e869c8e1dc86efc827d607685a98
 
   const onChangeInput = (e) => {
     setInput(e.target.value);
