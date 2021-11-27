@@ -1,0 +1,43 @@
+@import '../../Features//GlogalScss//globalScss.scss';
+.image-root{
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+    flex-direction: column;
+    // font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+    img{
+        width: 15vw;
+        height: 40vh;
+        object-fit: cover;
+        border-radius: 3px;
+        box-shadow: -5px 4px 14px -2px rgba(238, 238, 238, 0.306);
+
+    }
+
+ >button {
+     background-color: $mainColor;
+     color: rgb(255, 255, 255);
+     transition: all 0.5s ease-in-out;
+     border: none;
+     border: $mainColor 0.5px solid;
+     border-radius: 2px;
+     height: 4vh;
+     width: 10vw;
+
+     &:hover {
+        // margin-left: 10px;  
+        // font-size: 18px;
+        color: #000000;
+        // font-weight: 600;
+        background-color: white ;
+      }
+} 
+
+> h3,h5{
+    margin: 5px;
+    padding: 0;
+}
+}
+
+
