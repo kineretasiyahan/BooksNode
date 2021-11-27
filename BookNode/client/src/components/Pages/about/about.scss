@@ -1,0 +1,71 @@
+@import '../../Features//GlogalScss//globalScss.scss';
+
+
+// .about-root{
+//     width: 100vw;
+//     height: 100vh;
+// }
+.about-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+//   background-color: rgb(117, 174, 25);
+
+  
+}
+
+.about-card {
+    margin: 30px;
+  > img {
+    width: 16vw;
+    height: 28vh;
+    object-fit: cover;
+    border-radius: 5px;
+    background-color: $mainColor;
+
+    &:hover{
+        opacity: 0.7;
+    }
+  }
+
+  h4{
+      font-weight: 700;
+  }
+
+  >p{
+    font-weight: 500;  
+    width: 13vw;
+    // background-color: cadetblue;
+}
+}
+
+.about-sun {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+//   margin: 20px;
+padding: 10px;
+margin-top: -80px;
+height: 100vh;
+//   background-color: brown;
+
+  >span{
+      width: 50vw;
+  }
+}
+
+.about-images {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+//   background-color: rgb(56, 42, 165);
+  margin-top: 20px;
+
+
+
+}
+
+// .about-img{
+//     opacity: 0.8;
+// }

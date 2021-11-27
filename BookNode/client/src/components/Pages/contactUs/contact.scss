@@ -1,0 +1,50 @@
+@import '../../Features//GlogalScss//globalScss.scss';
+
+
+.contact-root{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    // background-color: blue;
+}
+
+.contact-label{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    // background-color: blueviolet;
+    // margin: 10px;
+
+    >label{
+        margin: 25px;
+        font-weight: 500;
+    }
+
+    >input{
+        margin-top: -15px;
+        border-radius: 5%;
+        border: none;
+        background-color:white ;
+        color: $mainColor;
+    }
+
+    >textarea{
+       margin-top: 20px;
+       margin-bottom: 20px;
+    }
+}
+
+.contact-form{
+    background-color: rgb(90, 135, 95);
+    width: 45vw;
+    height: 75vh;
+    // z-index: ;
+    text-align: center;
+    margin:8% auto;
+    padding: 10px;
+    // margin-top: -20px;
+    // border: white solid 2px;
+    // margin-left: 90px;
+}
