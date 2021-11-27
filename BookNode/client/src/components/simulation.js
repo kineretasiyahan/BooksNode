@@ -1,3 +1,6 @@
+const height = "200"
+const width = "200"
+
 export const simulation = [
   {
     name: "In Search of Lost Time ",
@@ -73,5 +76,23 @@ export const simulation = [
     summary:
       "The unforgettable, heartbreaking story of the unlikely friendship between a wealthy boy and the son of his father’s servant, caught in the tragic sweep of history, The Kite Runner transports readers to Afghanistan at a tense and crucial moment of change and destruction...",
     pic: "https://images2.penguinrandomhouse.com/cover/9781594631931",
+  },
+];
+
+export const aboutInfo = [
+  {
+    title: "Lorem ipsum",
+    paragraph: "adipisicing elit. Voluptas rerum iure cumque",
+    img: `https://images.pexels.com/photos/256450/pexels-photo-256450.jpeg?auto=compress&cs=tinysrgb&dpr=2`,
+  },
+  {
+    title: "Lorem ipsum",
+    paragraph: "adipisicing elit. Voluptas rerum iure cumque",
+    img: `https://images.pexels.com/photos/1809340/pexels-photo-1809340.jpeg?auto=compress&cs=tinysrgb&dpr=2`,
+  },
+  {
+    title: "Lorem ipsum",
+    paragraph: "adipisicing elit. Voluptas rerum iure cumque",
+    img: `https://images.pexels.com/photos/904616/pexels-photo-904616.jpeg?auto=compress&cs=tinysrgb&dpr=1`,
   },
 ];
