@@ -1,6 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import AppRouter from '../src/Components/routing/AppRouter'
-import Autocomplete from './Components/Pages/home/Autocomplete'
+import AppRouter from './Components/routing/AppRouter'
+// import Autocomplete from './Components/Pages/home/Autocomplete'
 
 
 function App() {
