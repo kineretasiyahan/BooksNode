@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ImCart } from "react-icons/im";
 import { getAllBooks } from "../../../service/books";
-
 import Button from "../../Features/button/Button";
+
 
 
 // import Button from "../../Features/button/Button";
@@ -13,9 +13,6 @@ const Home = () => {
   const [input, setInput] = useState("");
 
   const [booksbbb, setBookbbb] = useState([books]);
-
-
-  const [booksbbb, setBookbbb] = useState(books);
 
   const [searchBookResult, setSearchBookResult] = useState([books]);
   const [heightImg, setHeightImg] = useState(800);
