@@ -70,29 +70,35 @@ const deleteeUser = async (req, res) => {
 }
 const register = async (req, res) => {
     try {
-        await userModel.findOne({ email: req.body.email }).then((user) => {
+        const { firstName, lastName, email } = req.body.user;
+        const validData = userValidate(req.body.user)
+        if (validData.error) {
+            res.json(validData.error.details)
+        }
+        await userModel.findOne({ email }).then((user) => {
             if (user) {
                 res.status(400).json({ email: "email already exists" })
             }
             else {
-                const { firstName, lastName, email, password } = req.body;
-                const newUser = new userModel({
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email,
-                    password: password
-                });
                 bycrypt.genSalt(10, (err, salt) => {
-                    bycrypt.hash(newUser.password, salt, (error, hash) => {
-                        if (error) throw error;
-                        newUser.password = hash;
-                        newUser.save()
-                            .then((data) => res.json(data))
-                            .catch((err) => { console.log("someting wrong") })
+                    bycrypt.hash(req.body.user.password, salt, async (error, hash) => {
+                        try {
+                            if (error) throw error;
+                            req.body.user.password = hash;
+                            const newUser = new userModel({
+                                firstName: firstName,
+                                lastName: lastName,
+                                email: email,
+                                password: req.body.user.password
+                            });
+                            await newUser.save()
+                            res.status(200).json({ data: newUser })
+                        }
+                        catch (err) {
+                            res.status(301).json("someting wrong" + err)
+                        }
                     })
-
                 })
-
             }
         })
     }
