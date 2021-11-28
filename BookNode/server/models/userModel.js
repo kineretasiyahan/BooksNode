@@ -7,7 +7,7 @@ let joiSchema = Joi.object({
     firstName: Joi.string().min(2).max(50).required(),
     lastName: Joi.string().min(2).max(50).required(),
     email: Joi.string().min(2).max(50).required(),
-    password: Joi.string().min(1).max(50).required(),
+    password: Joi.string().min(1).max(200).required(),
     books:Joi.array().items(Joi.object().keys().min(1)),ref:'book'
 })
 const userValidate = (userData) => {
