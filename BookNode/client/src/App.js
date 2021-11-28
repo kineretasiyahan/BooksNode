@@ -1,16 +1,13 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-
-import AppRouter from './components/routing/AppRouter'
-
-
-// import NavBar from './components/Features/navBar/NavBar'
-
+import AppRouter from '../src/Components/routing/AppRouter'
+import Autocomplete from './Components/Pages/home/Autocomplete'
 
 
 function App() {
   return (
-      <Router>
-        
+    // <Autocomplete suggestions={"Oranges", "Apples", "Banana", "Kiwi", "Mango"]}/>
+
+      <Router>  
         <AppRouter/>
       </Router>
   )
