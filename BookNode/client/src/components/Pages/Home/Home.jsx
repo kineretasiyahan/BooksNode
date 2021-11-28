@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import { ImCart } from "react-icons/im";
 import { getAllBooks } from "../../../service/books";
 import Button from "../../Features/button/Button";
-
-
-
 // import Button from "../../Features/button/Button";
 
 import Input from "../../Features/input/Input";
