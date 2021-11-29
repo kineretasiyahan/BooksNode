@@ -1,0 +1,59 @@
+@import "../../Features//GlogalScss//globalScss.scss";
+
+.books-root {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  // background-color: cornflowerblue;
+  flex-wrap: wrap;
+}
+
+.books-card-images {
+  box-shadow: -3px 4px 5px 0px $mainColor;
+//   border: 0.1px solid $mainColor;
+  display: flex;
+  // align-items: ;
+  justify-content: start;
+  // background-color: burlywood;
+  flex-direction: column;
+  width: 20%;
+  height: 35%;
+  padding: 10px;
+  margin: 10px;
+
+  > img {
+    box-shadow: -3px 4px 5px 0px $mainColor;
+    // border: 0.1px solid $mainColor;
+    width: 65%;
+    height: 75%;
+    object-fit: cover;
+  }
+
+  > p {
+    padding: 0px;
+    margin: 5px;
+    width: 75%;
+  }
+
+  > h3,h5 {
+    padding: 0px;
+    margin: 5px;
+  }
+
+  > button {
+    background-color: $mainColor;
+    color: rgb(255, 255, 255);
+    transition: all 0.5s ease-in-out;
+    border: none;
+    border: $mainColor 0.5px solid;
+    border-radius: 2px;
+    height: 5vh;
+    width: 20vw;
+    margin-top: 8px;
+
+    &:hover {
+      color: #000000;
+      background-color: white;
+    }
+  }
+}
