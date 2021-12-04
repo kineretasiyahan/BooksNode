@@ -62,6 +62,7 @@ const Home = () => {
               <h3>{book.name}</h3>
               <h5>{book.author}</h5>
               <p>{book.summary}</p>
+              <p>{book.price}$</p>
               <button>
                 <i>Add to{<ImCart/>}</i>
               </button>
