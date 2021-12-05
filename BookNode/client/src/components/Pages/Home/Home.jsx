@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './home.scss';
 import { ImCart } from "react-icons/im";
 import { getAllBooks } from "../../../service/books";
 import Button from "../../Features/button/Button";

@@ -4,7 +4,7 @@ import Home from '../Pages/home/Home'
 import  Payment  from "../Pages/payment/Payment";
 // import UserPage from "../Pages/userPage/UserPage";
 import Contact from '../Pages/contactUs/Contact'
-import Abut from '../Pages/about/About';
+import About from '../Pages/about/About';
 import Books from '../Pages/books/Books'
 import Login from "../Pages/login/Login";
 import Register from "../Pages/register/Register";
@@ -26,8 +26,8 @@ const AppRouter = () => {
       <Route path="/Payment">
         <Payment/>
       </Route>
-      <Route path="/Abut">
-        <Abut />
+      <Route path="/About">
+        <About />
       </Route>
       <Route path="/Contact">
         <Contact/>
