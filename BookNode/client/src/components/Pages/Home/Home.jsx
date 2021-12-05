@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import { ImCart } from "react-icons/im";
 import { getAllBooks } from "../../../service/books";
 import Button from "../../Features/button/Button";
-
-
-
 // import Button from "../../Features/button/Button";
 
 import Input from "../../Features/input/Input";
@@ -65,6 +62,7 @@ const Home = () => {
               <h3>{book.name}</h3>
               <h5>{book.author}</h5>
               <p>{book.summary}</p>
+              <p>{book.price}$</p>
               <button>
                 <i>Add to{<ImCart/>}</i>
               </button>
