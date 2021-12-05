@@ -88,7 +88,7 @@ const Home = () => {
 
       <div className="home-images">
         {currentBooks?.map((book, index) => {
-          if (index < 4) {
+          if (index < 8) {
             return (
               <Image
                 key={book._id}
