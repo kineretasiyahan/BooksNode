@@ -4,10 +4,10 @@ import Home from '../Pages/home/Home'
 import  Payment  from "../Pages/payment/Payment";
 // import UserPage from "../Pages/userPage/UserPage";
 import Contact from '../Pages/contactUs/Contact'
-import About from '../Pages/about/About';
+import About from '../Pages/about/About'
 import Books from '../Pages/books/Books'
-import Login from "../Pages/login/Login";
-import Register from "../Pages/register/Register";
+import SignIn from "../Pages/signIn/SignIn";
+import SignUp from '../Pages/signUp/SignUp'
 import Footer from "../Features/footer/Footer";
 import NavBar from "../Features/navBar/NavBar";
 
@@ -32,13 +32,11 @@ const AppRouter = () => {
       <Route path="/Contact">
         <Contact/>
       </Route>
-      
-
-      <Route path="/Register">
-        <Register/>
+        <Route path="/SignUp">
+        <SignUp/>
       </Route>
-      <Route path="/Login">
-        <Login/>
+      <Route path="/SignIn">
+        <SignIn/>
       </Route>
       
     </Switch>

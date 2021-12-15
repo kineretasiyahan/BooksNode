@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
-import './home.scss';
-import { ImCart } from "react-icons/im";
-=======
 import { simulation } from "../../simulation";
 import { ImCart, ImHeart, ImUser } from "react-icons/im";
->>>>>>> 13a8dd96c01e93669323f3f164f3cab1e11fe784
 import { getAllBooks } from "../../../service/books";
 import Input from "../../Features/input/Input";
 import Image from "../../Features/image/Image";
@@ -14,18 +9,9 @@ import "./home.scss";
 const Home = () => {
   const [books, setBook] = useState([]);
   const [input, setInput] = useState("");
-  const [searchBookResult, setSearchBookResult] = useState([books]);
+  const [searchBookResult, setSearchBookResult] = useState(books);
   const [heightImg, setHeightImg] = useState(800);
 
-<<<<<<< HEAD
-
-  useEffect(() => {
-    getAllBooks()
-      // .then((res) => res.json())
-      .then((res) => setBook(res.data));
-  }, []);
-=======
->>>>>>> 13a8dd96c01e93669323f3f164f3cab1e11fe784
   const onChangeInput = (e) => {
     setInput(e.target.value);
     const searchResult = books.filter((book) => {
@@ -48,7 +34,7 @@ const Home = () => {
 
   useEffect(() => {
     getAllBooks()
-      .then((res) => setBook(res))
+      .then((res) => setBook(res.data))
       .catch((e) => {
         console.error(e);
       });
