@@ -4,7 +4,7 @@ const { bookModel } = require('../models/bookModel');
 const jwt = require('jsonwebtoken')
 const bycrypt = require('bcryptjs');
 const { object } = require('joi');
-const SECRET_KEY = process.env.SECRET_KEY || "booksNode"
+const SECRET_KEY = process.env.SECRET_KEY || "booksNode2021"
 
 
 const getAllUsers = async (req, res) => {
@@ -105,8 +105,6 @@ const register = async (req, res) => {
       console.log(err);
   }
 }
-
-
 const logIn = async (req, res) => {
     try {
         const { email, password } = req.body.user;
@@ -124,7 +122,6 @@ const logIn = async (req, res) => {
                 const payload = {
                     id: user._id,
                     email: email,
-
                 };
                 jwt.sign(
                     payload,
@@ -204,7 +201,6 @@ const showBooks = async (req, res) => {
         res.status(400).json({ error: error.message })
 
     }
-
 }
 module.exports = {
     getAllUsers,
