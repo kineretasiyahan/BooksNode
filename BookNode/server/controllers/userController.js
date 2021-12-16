@@ -74,49 +74,50 @@ const deleteeUser = async (req, res) => {
   }
 };
 const register = async (req, res) => {
-  console.log(req.body.user);
-  console.log(req.body);
   try {
-    // const data =[{req.body.firsName},
-  // ]
-    const { firstName, lastName, email } = req.body
+      await userModel.findOne({ email: req.body.email }).then((user) => {
+          if (user) {
+              res.status(400).json({ email: "email already exists" })
+          }
+          else {
+              const { firstName, lastName, email, password } = req.body;
+              const newUser = new userModel({
+                  firstName: firstName,
+                  lastName: lastName,
+                  email: email,
+                  password: password
+              });
+              bycrypt.genSalt(10, (err, salt) => {
+                  bycrypt.hash(newUser.password, salt, (error, hash) => {
+                      if (error) throw error;
+                      newUser.password = hash;
+                      newUser.save()
+                          .then((data) => res.json(data))
+                          .catch((err) => { console.log("someting wrong") })
+                  })
 
-    // const data = [
-    //   {req.body.generalDetail},
-    // ];
-  
-    const validData = userValidate(req.body);
-    if (validData.error) {
-      res.json(validData.error.details);
-    }
-    const user = await userModel.findOne({ email });
-    if (user) {
-        res.status(400).json({ email: "email already exists" })
-    }
-    if (user) res.status(400).json({ email: "email already exists" });
+              })
 
-}
-catch(e){
-
-}
+          }
+      })
+  }
+  catch (err) {
+      console.log(err);
+  }
 }
 
 
 const logIn = async (req, res) => {
     try {
         const { email, password } = req.body.user;
-        // const validData = userValidate(req.body.user)
-        // if (validData.error) {
-        //     res.json(validData.error.details)
-        // }
+        const validData = userValidate(req.body.user)
+        if (validData.error) {
+            res.json(validData.error.details)
+        }
         const user = await userModel.findOne({ email });
         if (!user) {
             return res.status(404).json({ email: "User not found" });
         }
-        // .then((user) => {
-        //     if (!user) {
-        //         return res.status(404).json({ email: "User not found" });
-        //     }
         console.log(user);
         bycrypt.compare(password, user.password).then((isMatch) => {
             if (isMatch) {
@@ -189,7 +190,6 @@ const addBookToUser = async (req, res) => {
 const showBooks = async (req, res) => {
     try {
         const user = await userModel.findById(req.params.id);
-        // console.log(user);
         if (!user) {
             res.status(400).json("user not find")
         }
