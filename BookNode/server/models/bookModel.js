@@ -6,8 +6,10 @@ let joiSchema = Joi.object({
     name: Joi.string().min(1), ref: "user",
     author: Joi.string().min(1), ref: "user",
     summary: Joi.string().min(1), ref: "user",
-    pic: Joi.string().min(1), ref: "user"
+    pic: Joi.string().min(1), ref: "user",
+    price: Joi.number().min(0).max(500), 
 
+   
 })
 
 const bookValidate = (bookData) => {

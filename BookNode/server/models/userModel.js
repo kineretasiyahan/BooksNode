@@ -7,11 +7,12 @@ let joiSchema = Joi.object({
     firstName: Joi.string().min(2).max(50).required(),
     lastName: Joi.string().min(2).max(50).required(),
     email: Joi.string().min(2).max(50).required(),
-    password: Joi.string().min(1).max(50).required(),
-    books:Joi.array().items(Joi.object().keys().min(1)),ref:'book'
+    password: Joi.string().min(1).max(200).required(),
+    // books:Joi.array().items(Joi.object().keys().min(1)),ref:'book'
+    books: Joi.array().valid(mongoose.Schema.Types.ObjectId, "book")
 })
 const userValidate = (userData) => {
-    const joiSchemaValid= joiSchema.validate(userData);
+    const joiSchemaValid = joiSchema.validate(userData);
     return joiSchemaValid;
 }
 const userSchema = new mongoose.Schema(Joijoose.convert(joiSchema))
