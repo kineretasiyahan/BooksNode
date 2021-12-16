@@ -9,7 +9,7 @@ import "./home.scss";
 const Home = () => {
   const [books, setBook] = useState([]);
   const [input, setInput] = useState("");
-  const [searchBookResult, setSearchBookResult] = useState([books]);
+  const [searchBookResult, setSearchBookResult] = useState(books);
   const [heightImg, setHeightImg] = useState(800);
 
   const onChangeInput = (e) => {
@@ -34,7 +34,7 @@ const Home = () => {
 
   useEffect(() => {
     getAllBooks()
-      .then((res) => setBook(res))
+      .then((res) => setBook(res.data))
       .catch((e) => {
         console.error(e);
       });
