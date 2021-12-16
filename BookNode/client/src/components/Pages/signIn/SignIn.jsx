@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import {userLogin} from "../../../service/uesrs"
 
-const SignInForm = ({ signIn, error }) => {
+const SignInForm = () => {
   const [details, setDetails] = useState({
     email: "",
     password: "",
   });
-  const [userIn, setUserIn] = useState({});
+  // const [userIn, setUserIn] = useState({});
 
   const handelInput = (e) => {
     setDetails({ ...details, [e.target.name]: e.target.value });
@@ -13,9 +14,9 @@ const SignInForm = ({ signIn, error }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+    userLogin(details)
     // signIn(details);
-    console.log(userIn);
+    console.log(details);
     // setUserIn([...userIn,details])
     
    
