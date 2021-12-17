@@ -23,7 +23,7 @@ const SignUp = () => {
       
       {/* <div className="rotate-div"> */}
       <form onSubmit={onSubmit} className="form-root">
-      <h1>Sing Up</h1>
+      <h1>Sing Up</h1>add
         {/* <label className="label-form">First Name :</label> */}
         <input className="input-form"
           type="text"
