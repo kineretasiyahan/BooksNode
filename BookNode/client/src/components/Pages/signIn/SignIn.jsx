@@ -25,7 +25,7 @@ const SignInForm = () => {
   // const newU = {...details}
 
   return (
-    <div>
+    <div >
       <h1>Sing Up</h1>
       <form onSubmit={onSubmit}>
         <input
