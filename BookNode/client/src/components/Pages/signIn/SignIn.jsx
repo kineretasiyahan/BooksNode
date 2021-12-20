@@ -9,24 +9,19 @@ const SignInForm = () => {
   // const [userIn, setUserIn] = useState({});
 
   const handelInput = (e) => {
-    setDetails({ ...details, [e.target.name]: e.target.value });
+    setDetails({...details,[e.target.name]: e.target.value });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    userLogin(details)
-    // signIn(details);
-    console.log(details);
-    // setUserIn([...userIn,details])
-    
-   
+    console.log(details); 
   };
 
   // const newU = {...details}
 
   return (
     <div>
-      <h1>Sing Up</h1>
+      <h1>Sing In</h1>
       <form onSubmit={onSubmit}>
         <input
           type="email"
@@ -46,9 +41,9 @@ const SignInForm = () => {
         />
         <button
           type="submit"
-          //   onClick={() => {
-          //     userRegistration(details);
-          //   }}
+            onClick={() => {
+              userLogin(details);
+            }}
         >
           Sign-in
         </button>

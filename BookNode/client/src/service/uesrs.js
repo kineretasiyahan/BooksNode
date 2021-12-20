@@ -16,7 +16,8 @@ export const userRegistration = async (user) => {
 
   return await fetch("http://localhost:3002/api/users/register",options)
     .then((res) => res.json())
-    .then(res=>res.data)
+    // .then(res=>res.data)
+    .then((res)=>res.data)
     .catch((err) => console.log(err));
 };
 

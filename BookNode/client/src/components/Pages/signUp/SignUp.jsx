@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { userRegistration } from "../../../service/uesrs";
+// import {userContext} from "../../../Context"
 
 const SignUp = () => {
+
   const [userSignUp, setUserSignUp] = useState({
     firstName: "",
     lastName: "",
@@ -12,12 +14,12 @@ const SignUp = () => {
   const handelInput = (e) => {
     setUserSignUp({ ...userSignUp, [e.target.name]: e.target.value });
   };
-
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(userSignUp);
   };
-  
   return (
+    // <userContext.Provider value={userSignUp}>
     <div>
       <h1>Sing Up</h1>
       <form onSubmit={onSubmit}>
@@ -63,6 +65,7 @@ const SignUp = () => {
         </button>
       </form>
     </div>
+    // </userContext.Provider>
   );
 };
 
