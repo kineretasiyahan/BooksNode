@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { userRegistration } from "../../../service/uesrs";
-// import {userContext} from "../../../Context"
 
 const SignUp = () => {
 
@@ -19,7 +18,7 @@ const SignUp = () => {
     console.log(userSignUp);
   };
   return (
-    // <userContext.Provider value={userSignUp}>
+    
     <div>
       <h1>Sing Up</h1>
       <form onSubmit={onSubmit}>
@@ -65,7 +64,7 @@ const SignUp = () => {
         </button>
       </form>
     </div>
-    // </userContext.Provider>
+  
   );
 };
 
