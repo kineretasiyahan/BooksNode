@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { simulation } from "../../simulation";
 import { ImCart, ImHeart, ImUser } from "react-icons/im";
 import { getAllBooks } from "../../../service/books";
+import home1 from "../../imagesWeb/home1.jpeg";
 import Input from "../../Features/input/Input";
 import Image from "../../Features/image/Image";
 import "./home.scss";
@@ -24,21 +25,13 @@ const Home = () => {
     setSearchBookResult(searchResult);
   };
 
-  // const calcImageSize = () => {
-  //   const targetSize = 800;
-  //   const imagesPerRow =Math.floor(Math.round(heightImg / targetSize)) ;
-  //   const size = heightImg / imagesPerRow  ;
-  //   console.log(size);
-  //   setHeightImg(size)
-  // }
-
   useEffect(() => {
     getAllBooks()
-      .then((res) => setBook(res))
+      .then((res) => setBook(res.data))
       .catch((e) => {
         console.error(e);
       });
-    //  console.log(books);
+    console.log(books);
   }, []);
 
   let currentBooks;
@@ -62,29 +55,29 @@ const Home = () => {
           Booknode <br /> A place where imagination has no boundaries ...
         </h1>
       </div>
-<div className="search-background">
-       <div className="home-search">
-        <div className="search-icons">
-        <a href="http://localhost:3000/">
-          <ImUser />
-        </a>
-        <a href="http://localhost:3000/Books">
-          <ImHeart />
-        </a>
-        <a href="http://localhost:3000/Books">
-          <ImCart />
-        </a>          
-        </div>
 
-        <Input
-          name="search-input"
-          handleChange={onChangeInput}
-          value={input}
-          placeholder={"Search"}
-        />
+      <div className="search-background">
+        <div className="home-search">
+          <div className="search-icons">
+            <a href="http://localhost:3000/">
+              <ImUser />
+            </a>
+            <a href="http://localhost:3000/Books">
+              <ImHeart />
+            </a>
+            <a href="http://localhost:3000/Books">
+              <ImCart />
+            </a>
+          </div>
+
+          <Input
+            name="search-input"
+            handleChange={onChangeInput}
+            value={input}
+            placeholder={"Search"}
+          />
+        </div>
       </div>
- 
-</div>
 
       <div className="home-images">
         {currentBooks?.map((book, index) => {

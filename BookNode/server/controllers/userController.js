@@ -1,11 +1,10 @@
-const { userModel, userValidate } = require('../models/userModel');
-const mongoose = require("mongoose")
-const { bookModel } = require('../models/bookModel');
-const jwt = require('jsonwebtoken')
-const bycrypt = require('bcryptjs');
-const { object } = require('joi');
-const SECRET_KEY = process.env.SECRET_KEY || "booksNode2021"
-
+const { userModel, userValidate } = require("../models/userModel");
+const mongoose = require("mongoose");
+const { bookModel } = require("../models/bookModel");
+const jwt = require("jsonwebtoken");
+const bycrypt = require("bcryptjs");
+const { object } = require("joi");
+const SECRET_KEY = process.env.SECRET_KEY || "booksNode2021";
 
 const getAllUsers = async (req, res) => {
   try {
@@ -75,141 +74,208 @@ const deleteeUser = async (req, res) => {
 };
 const register = async (req, res) => {
   try {
-      await userModel.findOne({ email: req.body.email }).then((user) => {
-          if (user) {
-              res.status(400).json({ email: "email already exists" })
-          }
-          else {
-              const { firstName, lastName, email, password } = req.body;
-              const newUser = new userModel({
-                  firstName: firstName,
-                  lastName: lastName,
-                  email: email,
-                  password: password
-              });
-              bycrypt.genSalt(10, (err, salt) => {
-                  bycrypt.hash(newUser.password, salt, (error, hash) => {
-                      if (error) throw error;
-                      newUser.password = hash;
-                      newUser.save()
-                          .then((data) => res.json(data))
-                          .catch((err) => { console.log("someting wrong") })
-                  })
-
-              })
-
-          }
-      })
-  }
-  catch (err) {
-      console.log(err);
-  }
-}
-const logIn = async (req, res) => {
-    try {
-        const { email, password } = req.body.user;
-        const validData = userValidate(req.body.user)
-        if (validData.error) {
-            res.json(validData.error.details)
-        }
-        const user = await userModel.findOne({ email });
-        if (!user) {
-            return res.status(404).json({ email: "User not found" });
-        }
-        console.log(user);
-        bycrypt.compare(password, user.password).then((isMatch) => {
-            if (isMatch) {
-                const payload = {
-                    id: user._id,
-                    email: email,
-                };
-                jwt.sign(
-                    payload,
-                    SECRET_KEY,
-                    { expiresIn: 3600 },
-                    (err, token) => {
-                        if (err) return res.status(404).json(err)
-                        res.json({
-                            success: true,
-                            token: token,
-                            // expiresTokenIn: "60min",
-                            email: payload.email,
-                        });
-                    }
-                );
-            } else {
-                return res.status(400).json({ password: "Password incorrect" });
-            }
+    await userModel.findOne({ email: req.body.email }).then((user) => {
+      if (user) {
+        res.status(400).json({ email: "email already exists" });
+      } else {
+        const { firstName, lastName, email, password } = req.body;
+        const newUser = new userModel({
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
         });
-        // });
-    } catch (error) {
-        console.log(error.message);
-    }
+        bycrypt.genSalt(10, (err, salt) => {
+          bycrypt.hash(newUser.password, salt, (error, hash) => {
+            if (error) throw error;
+            newUser.password = hash;
+            newUser
+              .save()
+              .then((data) => res.json(data))
+              .catch((err) => {
+                console.log("someting wrong");
+              });
+          });
+        });
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };
+
+const logIn2 = async (req, res) => {
+  try {
+    const { email, password } = req.body.user;
+    const validData = userValidate(req.body.user);
+    if (validData.error) {
+      res.json(validData.error.details);
+    }
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ email: "User not found" });
+    }
+    console.log(user);
+    bycrypt.compare(password, user.password).then((isMatch) => {
+      if (isMatch) {
+        const payload = {
+          id: user._id,
+          email: email,
+        };
+        jwt.sign(payload, SECRET_KEY, { expiresIn: 3600 }, (err, token) => {
+          if (err) return res.status(404).json(err);
+          res.json({
+            success: true,
+            token: token,
+            // expiresTokenIn: "60min",
+            email: payload.email,
+          });
+        });
+      } else {
+        return res.status(400).json({ password: "Password incorrect" });
+      }
+    });
+    // });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const logIn = async (req, res) => {
+  // בודקים שהסיסמה והאיימל שקיבלנו מהקליינט הכן קיימים
+  const { email, password } = req.body.user;
+  if (!email || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "there is error with email or password.",
+      error: "email and password is required ",
+    });
+  }
+
+  // מתחילים ניסוי של מצאית משתמש על פי הנתונים מהקליינט ומגבים בהתאם
+  try {
+    // מנסים למצוא משתמש לפי איימל
+    const user = await userModel.findOne({ email });
+
+    // במידה ולא קיים מחזירים תשובה לקליינט שלא קיים משתמש כזה
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "email not found",
+        errors: { email: "email not fond" },
+      });
+    }
+
+    /*
+           אין 
+           else
+           בגלל שבמידה והתנאי מתקיים אנחנו יוצאים מהפונקציה מכיוון שהחזרנו תשובה לקליינט 
+    */
+
+    // משווים את הסיסמה שהקיבלנו מהקליינט לסיסמה של המשתמש שמצאנו על פי המייל ותופסים במשתנה את מה שחוזר לנו מהפונקציה של ההשוואה
+    const isPasswordCorrect = await bycrypt.compare(password, user.password);
+
+    // במידה ומה שחזר מהפונקציה של ההשוואה לא תואם אז מחזירים לקליינט תשובה שהסיסמה שגויה ולא מתאימה
+    if (!isPasswordCorrect) {
+      return res.status(400).json({
+        success: false,
+        message: "wrong password",
+        errors: { password: "wrong password" },
+      });
+    }
+
+    /*
+           אין 
+           else
+           בגלל שבמידה והתנאי מתקיים אנחנו יוצאים מהפונקציה מכיוון שהחזרנו תשובה לקליינט 
+    */
+
+    // מוחקים את הסיסמה של המשתמש כדי שנוכל להחזיר לקליינט נתונים רלוונטים ולא רגישים מדי
+    delete user.password;
+
+    /* 
+
+        יוצרים תוקן להחזיר לקליינט במידה והכל עבר בהצלחה 
+        זה ישמש אותנו בהמשך כדי לאמת נתונים של משתמש לפני שנציג לנו מידע מסוים 
+        זה יעזור לנו לוודא שהכן הבקשות שנשלחות מהקליינט הכן אמינות
+
+    */
+    const token = jwt.sign(user.toJSON(), SECRET_KEY, { expiresIn: "1d" });
+    res.status(200).json({
+      success: true,
+      message: "success",
+      data: token,
+    });
+
+    // במידה ובמהלך ניסיון ההרצה של הפונקציה היא נכשלת או נזרקת שגיעה היא תתפס כאן
+  } catch (err) {
+    res.status(500).json({
+      message: "something went wrong",
+      error: err.message,
+    });
+  }
+};
+
 const addBookToUser = async (req, res) => {
-    // console.log(req.body._id);
-    // console.log(req.params.id);
-    try {
-        // let book;
-        // let user;
-        // await bookModel.findById(req.body._id, (err, result) => {
-        //     if (err) throw err
-        //     // book = result;
-        // });
-        // await userModel.findById(req.params.id, (err, result) => {
-        //     if (err) throw err;
-        //     // user = result
-        // })
-        // console.log(book)
-        // if(!book) throw new Error("book not fond!")
+  // console.log(req.body._id);
+  // console.log(req.params.id);
+  try {
+    // let book;
+    // let user;
+    // await bookModel.findById(req.body._id, (err, result) => {
+    //     if (err) throw err
+    //     // book = result;
+    // });
+    // await userModel.findById(req.params.id, (err, result) => {
+    //     if (err) throw err;
+    //     // user = result
+    // })
+    // console.log(book)
+    // if(!book) throw new Error("book not fond!")
 
-        // const userId = await userModel.findById(req.params.id);
-        // if (!userId) throw new Error("user not fond!")
-        // console.log(userId)
+    // const userId = await userModel.findById(req.params.id);
+    // if (!userId) throw new Error("user not fond!")
+    // console.log(userId)
 
-        // userId.books.push(bookId);
-        // await userId.save();
-        const bookId = await bookModel.findById(req.body._id);
-        console.log(bookId)
-        const userId = await userModel.findById(req.params.id);
-        console.log(userId)
-        userId.books.push(bookId);
-        await userId.save();
-        res.status(200).json({ data: userId })
-        res.status(200).json({ data: user })
-    }
-    catch (err) {
-        console.log(err.message)
-        res.status(500).json({ error: err.message })
-
-    }
-}
+    // userId.books.push(bookId);
+    // await userId.save();
+    const bookId = await bookModel.findById(req.body._id);
+    console.log(bookId);
+    const userId = await userModel.findById(req.params.id);
+    console.log(userId);
+    userId.books.push(bookId);
+    await userId.save();
+    res.status(200).json({ data: userId });
+    res.status(200).json({ data: user });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ error: err.message });
+  }
+};
 const showBooks = async (req, res) => {
-    try {
-        const user = await userModel.findById(req.params.id);
-        if (!user) {
-            res.status(400).json("user not find")
-        }
-        user.populate("books").then((user) => {
-            console.log(user);
-            const books2 = user.books.map(book => book);
-            res.status(200).json({ data: books2 })
-        })
-
-    } catch (error) {
-        console.log(error.message);
-        res.status(400).json({ error: error.message })
-
+  try {
+    const user = await userModel.findById(req.params.id);
+    if (!user) {
+      res.status(400).json("user not find");
     }
-}
+    user.populate("books").then((user) => {
+      console.log(user);
+      const books2 = user.books.map((book) => book);
+      res.status(200).json({ data: books2 });
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({ error: error.message });
+  }
+};
 module.exports = {
-    getAllUsers,
-    createUser,
-    getUserById,
-    updateUser,
-    deleteeUser,
-    addBookToUser,
-    register,
-    logIn,
-    showBooks
+  getAllUsers,
+  createUser,
+  getUserById,
+  updateUser,
+  deleteeUser,
+  addBookToUser,
+  register,
+  logIn,
+  showBooks,
 };
