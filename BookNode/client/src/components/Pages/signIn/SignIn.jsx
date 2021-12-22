@@ -20,13 +20,8 @@ const SignInForm = () => {
   // const newU = {...details}
 
   return (
-<<<<<<< HEAD
-    <div>
-      <h1>Sing In</h1>
-=======
     <div >
       <h1>Sing Up</h1>
->>>>>>> 6eff02d11363e4b6f180c635a6f379b2bcd78ef5
       <form onSubmit={onSubmit}>
         <input
           type="email"

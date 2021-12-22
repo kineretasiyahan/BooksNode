@@ -18,13 +18,6 @@ const SignUp = () => {
     console.log(userSignUp);
   };
   return (
-<<<<<<< HEAD
-    
-    <div>
-      <h1>Sing Up</h1>
-      <form onSubmit={onSubmit}>
-        <input
-=======
     <div className="signUp-root">
   
       
@@ -33,7 +26,6 @@ const SignUp = () => {
       <h1>Sing Up</h1>add
         {/* <label className="label-form">First Name :</label> */}
         <input className="input-form"
->>>>>>> 6eff02d11363e4b6f180c635a6f379b2bcd78ef5
           type="text"
           name="firstName"
           id="firstName"

@@ -1,33 +1,31 @@
-// import React, { createContext,useEffect, useReducer } from "react";
-// import { userReducer } from "./cases";
+import React, { createContext,useEffect, useReducer } from "react";
+import userReducer  from "./cases";
 
 
-// const initialState = {
-//   user: JSON.stringify(localStorage.getItem("user") || null),
-//   error: false,
-// };
+const initialState = {
+  user: JSON.stringify(localStorage.getItem("user") || null),
+  error: false,
+};
 
-// export const context = createContext(initialState);
+export const context = createContext(initialState);
 
-// export const contextProvidor = ({ children }) => {
-//   const [state, dispatch] = useReducer(userReducer, initialState);
+export const ContextProvidor = ({ children }) => {
+  const [state, dispatch] = useReducer(userReducer, initialState)
 
-//   useEffect(() => {
-//     localStorage.getItem("user", JSON.stringify(state.user));
-//   }, [state.user]);
-
-
+useEffect(()=>{
+    localStorage.getItem("user", JSON.stringify(state.user));
+},[state.user])
 
 
-//   return (
-//     <context.Provider
-//       value={{
-//         user: state.user,
-//         errore: state.erroe,
-//         dispatch,
-//       }}
-//     >
-//         {children}
-//     </context.Provider>
-//   );
-// };
+  return (
+    <context.Provider
+      value={{
+        user: state.user,
+        error: state.error,
+        dispatch,
+      }}
+    >
+        {children}
+    </context.Provider>
+  );
+}
