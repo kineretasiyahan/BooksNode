@@ -1,5 +1,15 @@
+import about1 from "./imagesWeb/about1.jpeg"
+import about2 from "./imagesWeb/about2.jpeg"
+import about3 from "./imagesWeb/about3.jpeg"
+import about4 from "./imagesWeb/about4.jpeg"
+
 const height = "200"
 const width = "200"
+
+// import {about4} from "./imagesWeb/about4.jpeg"
+
+
+
 
 export const simulation = [
   {
@@ -83,16 +93,16 @@ export const aboutInfo = [
   {
     title: "Lorem ipsum",
     paragraph: "adipisicing elit. Voluptas rerum iure cumque",
-    img: `https://images.pexels.com/photos/256450/pexels-photo-256450.jpeg?auto=compress&cs=tinysrgb&dpr=2`,
+    img: about1,
   },
   {
     title: "Lorem ipsum",
     paragraph: "adipisicing elit. Voluptas rerum iure cumque",
-    img: `https://images.pexels.com/photos/1809340/pexels-photo-1809340.jpeg?auto=compress&cs=tinysrgb&dpr=2`,
+    img: about2,
   },
   {
     title: "Lorem ipsum",
     paragraph: "adipisicing elit. Voluptas rerum iure cumque",
-    img: `https://images.pexels.com/photos/904616/pexels-photo-904616.jpeg?auto=compress&cs=tinysrgb&dpr=1`,
+    img: about4,
   },
 ];

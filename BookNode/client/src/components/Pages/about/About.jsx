@@ -1,5 +1,7 @@
 import React from "react";
 import { aboutInfo } from "../../simulation";
+import about3 from "../../imagesWeb/about3.jpeg"
+
 import "./about.scss";
 
 const About = () => {
@@ -36,7 +38,7 @@ const About = () => {
 
         <div className="about-img">
           <img
-            src="https://images.pexels.com/photos/2846814/pexels-photo-2846814.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=400&w=500"
+            src={about3}
             alt=""
           />
         </div>

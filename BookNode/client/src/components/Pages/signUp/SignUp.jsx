@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { userRegistration } from "../../../service/uesrs";
 import "./signUp.scss"
 const SignUp = () => {
@@ -23,7 +24,7 @@ const SignUp = () => {
       
       {/* <div className="rotate-div"> */}
       <form onSubmit={onSubmit} className="form-root">
-      <h1>Sing Up</h1>add
+      <h1>Sing Up</h1>
         {/* <label className="label-form">First Name :</label> */}
         <input className="input-form"
           type="text"
@@ -70,7 +71,7 @@ const SignUp = () => {
           Register
         </button>
       </form>
-    
+     <Link to="/SignIn" className="link">I'm already registered</Link>
       {/* </div> */}
     </div>
   

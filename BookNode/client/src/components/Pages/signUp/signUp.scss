@@ -6,6 +6,10 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  >.link{
+    text-decoration: none;
+    color: $mainColor;
+}
 }
 
 .form-root {
@@ -16,15 +20,14 @@
   margin-bottom: 20px;
   margin-top: 20px;
   box-shadow: -2px 2px 10px 1px rgb(129, 165, 129);
-
-  width: 50%;
+  width: 30%;
   height: 100%;
 
   > h1 {
     border-radius: 0px 0px 70px 70px;
     border: 0px;
     border-bottom: solid 1px $mainColor;
-    width: 50vw;
+    width: 30vw;
     height: 10vh;
     text-align: center;
     margin-top: -0.5px;
@@ -58,6 +61,8 @@
     }
 
   }
+
+  
 }
 
 

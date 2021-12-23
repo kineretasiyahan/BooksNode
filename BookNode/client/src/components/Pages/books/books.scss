@@ -1,43 +1,52 @@
 @import "../../Features//GlogalScss//globalScss.scss";
 
-.books-root {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  // background-color: cornflowerblue;
-  flex-wrap: wrap;
+.books-root-card {
+  margin-top: 20px;
+  margin-left: 20px;
+
+  
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  // height: 100vh;
+  // width: 100vw;
+
 }
 
 .books-card-images {
-  box-shadow: -3px 4px 5px 0px $mainColor;
-//   border: 0.1px solid $mainColor;
   display: flex;
-  // align-items: ;
-  justify-content: start;
-  // background-color: burlywood;
   flex-direction: column;
-  width: 20%;
-  height: 35%;
-  padding: 10px;
-  margin: 10px;
+  width: 100%;
+  height: fit-content;
+    // box-shadow: -3px 4px 5px 0px $mainColor;
 
-  > img {
-    box-shadow: -3px 4px 5px 0px $mainColor;
-    // border: 0.1px solid $mainColor;
-    width: 65%;
-    height: 75%;
-    object-fit: cover;
+  > .books-img {
+    // box-shadow: -3px 4px 5px 0px $mainColor;
+    width: 70%;
+    height: 20%;
+    // object-fit: cover;
   }
 
   > p {
     padding: 0px;
-    margin: 5px;
-    width: 75%;
+    margin:0px;
+    width: 80%;
+
+    >.books-title{
+      color: rgb(32, 139, 56);
+    }
   }
 
-  > h3,h5 {
+  > h4,h5 {
     padding: 0px;
-    margin: 5px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+
+    
+    >.books-title{
+      color: rgb(32, 139, 56);;
+    }
   }
 
   > button {
@@ -50,10 +59,17 @@
     height: 5vh;
     width: 20vw;
     margin-top: 8px;
+    margin-bottom: 10px;
 
     &:hover {
       color: #000000;
       background-color: white;
     }
   }
+
+  >.read-moor{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
 }
