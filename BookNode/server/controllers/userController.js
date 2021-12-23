@@ -108,10 +108,10 @@ const register = async (req, res) => {
 const logIn = async (req, res) => {
     try {
         const { email, password } = req.body.user;
-        const validData = userValidate(req.body.user)
-        if (validData.error) {
-            res.json(validData.error.details)
-        }
+        // const validData = userValidate(req.body.user)
+        // if (validData.error) {
+        //     res.json(validData.error.details)
+        // }
         const user = await userModel.findOne({ email });
         if (!user) {
             return res.status(404).json({ email: "User not found" });
