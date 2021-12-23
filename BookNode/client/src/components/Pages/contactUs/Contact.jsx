@@ -1,11 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import Input from "../../Features/input/Input";
+import contact2 from "../../imagesWeb/contact2.jpeg"
 import "./contact.scss"
 
 const Contact = () => {
   const [email, setEmail] = useState("");
   const [data, setData] = useState("");
   const [content, setContent] = useState("");
+  const [thanks, setThanks] = useState("")
+  const [isSend, setIsSend] = useState(false)
+
+
   const getEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -23,17 +28,25 @@ const Contact = () => {
     console.log(inputValue);
   }
 
+  const ThanksHandler =(e)=>{
+    e.preventDefault();
+    setThanks("Thank you we will contact you soon");
+    setIsSend(true);
+
+  }
+
   return (
     <div className="contact-root">
 
       <div className="contact-img">
         <img
-          src="https://images.pexels.com/photos/4153146/pexels-photo-4153146.jpeg?auto=compress&cs=tinysrgb&dpr=1&h=800&w=1000"
+          src={contact2}
           alt="h=400&w=500"
         />
       </div>
-
-      <form className="contact-form">
+      
+      {
+        !isSend? <form className="contact-form" onSubmit={ThanksHandler}>
         <div>
           <h2>Contact as</h2>
           <h5>We would love to hear from you !</h5>
@@ -62,7 +75,10 @@ const Contact = () => {
           <span>{textSpan}</span>
           {/* <a>go up</a> */}
         </div>
-      </form>
+      </form> : <div><h1>{thanks}</h1></div>
+      
+      }
+     
     </div>
   );
 };

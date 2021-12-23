@@ -1,34 +1,41 @@
 import React, { useState } from "react";
-import {userLogin} from "../../../service/uesrs"
+import { userLogin } from "../../../service/uesrs";
+import { Link } from "react-router-dom";
+
+import "./signIn.scss";
 
 const SignInForm = () => {
   const [details, setDetails] = useState({
     email: "",
     password: "",
   });
-  // const [userIn, setUserIn] = useState({});
+
+  const [userIn, setUserIn] = useState({});
+  const [errorLoginHa, setErrorLoginHa] = useState({});
+
 
   const handelInput = (e) => {
     setDetails({ ...details, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
-    userLogin(details)
-    // signIn(details);
-    console.log(details);
-    // setUserIn([...userIn,details])
-    
-   
+  await userLogin(details)
+      .then((res) => {
+      res.success? setUserIn(res): setErrorLoginHa(res)
+      })
+      .catch((error) => console.log(error));
+
+      userIn? window.location.pathname = '/' : window.location.pathname = '/SignIn' 
   };
 
-  // const newU = {...details}
-
+  console.log(errorLoginHa);
   return (
-    <div >
-      <h1>Sing Up</h1>
-      <form onSubmit={onSubmit}>
+    <div className="sign-in-root">
+      <form className="form-root-sign-in" onSubmit={onSubmit}>
+        <h1>Sing in</h1>
         <input
+          className="input-form"
           type="email"
           name="email"
           id="email"
@@ -36,7 +43,9 @@ const SignInForm = () => {
           value={details.email}
           onChange={handelInput}
         />
+
         <input
+          className="input-form"
           type="password"
           name="password"
           id="password"
@@ -44,15 +53,17 @@ const SignInForm = () => {
           value={details.password}
           onChange={handelInput}
         />
+        <p>{errorLoginHa?.message}</p>
         <button
+          className="button-form"
           type="submit"
-          //   onClick={() => {
-          //     userRegistration(details);
-          //   }}
         >
-          Sign-in
+          Login
         </button>
       </form>
+      <Link to="/SignUp" className="link">
+        I'm not registered yet
+      </Link>
     </div>
   );
 };
