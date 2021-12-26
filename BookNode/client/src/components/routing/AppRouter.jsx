@@ -10,13 +10,14 @@ import SignIn from "../Pages/signIn/SignIn";
 import SignUp from "../Pages/signUp/SignUp";
 import Footer from "../Features/footer/Footer";
 import NavBar from "../Features/navBar/NavBar";
-import { context, ContextProvidor } from "../../context/context";
+// import { context, ContextProvidor } from "../../context/context";
 
 const AppRouter = () => {
 
 
   return (
     <>
+    {/* <ContextProvidor> */}
       <NavBar />
 
     <Switch>
@@ -45,6 +46,7 @@ const AppRouter = () => {
     </Switch>
 
     <Footer/>
+    {/* </ContextProvidor> */}
    </>
     
   );

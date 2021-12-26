@@ -12,5 +12,5 @@ mongooseConnect()
         console.log("error in mongoDB atlas connected")
     })
 
-const mongooseConnection = mongoose.connection
+const mongooseConnection= mongoose.connection
 module.exports = mongooseConnection;

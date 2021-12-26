@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import { userLogin } from "../../../service/uesrs";
 import { Link } from "react-router-dom";
-
+import { LOGIN_SUCCESS,LOGOUT } from "../../../context/constans";
+import {LogSucces,Logout} from '../../../context/actionns'
+import { context} from "../../../context/context"
 import "./signIn.scss";
-
 const SignInForm = () => {
+
   const [details, setDetails] = useState({
     email: "",
     password: "",
@@ -12,6 +14,7 @@ const SignInForm = () => {
 
   const [userIn, setUserIn] = useState({});
   const [errorLoginHa, setErrorLoginHa] = useState({});
+const {userLog, dispatch } = useContext(context);
 
 
   const handelInput = (e) => {
@@ -19,10 +22,21 @@ const SignInForm = () => {
   };
 
   const onSubmit = async(e) => {
+
     e.preventDefault();
+    debugger
   await userLogin(details)
       .then((res) => {
-      res.success? setUserIn(res): setErrorLoginHa(res)
+        res.success? setUserIn(res): setErrorLoginHa(res)
+        try{
+
+    // userIn? LogSucces(userIn):Logout()
+     dispatch({ type: LOGIN_SUCCESS,payload:userIn })
+   }  
+      
+    catch(e){
+console.log(e);
+    }
       })
       .catch((error) => console.log(error));
 

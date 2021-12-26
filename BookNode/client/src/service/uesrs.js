@@ -33,14 +33,14 @@ export const userLogin = async (user) => {
 
 
   try {
-    if (!localStorage.jwtToken) {
+    if (localStorage.jwtToken) {
       await fetch("http://localhost:3002/api/users/login", options)
         .then((response) => response.json())
         .then((response) => {
           if (!response.data) throw response;
           return response;
         })
-        .then((response) => localStorage.setItem("jwtToken", response.data))
+        .then((response) => localStorage.setItem("jwtToken",response.data))
         .catch((err) => {
           throw err;
         });

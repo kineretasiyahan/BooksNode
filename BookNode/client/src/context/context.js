@@ -1,31 +1,34 @@
-import React, { createContext,useEffect, useReducer } from "react";
-import userReducer  from "./cases";
-
+import React, { createContext, useEffect, useReducer } from "react";
+import userReducer from "./cases";
+import jwt_decode from "jwt-decode";
 
 const initialState = {
-  user: JSON.stringify(localStorage.getItem("user") || null),
-  error: false,
+  user: null,
 };
 
-export const context = createContext(initialState);
+export const context = createContext();
 
 export const ContextProvidor = ({ children }) => {
-  const [state, dispatch] = useReducer(userReducer, initialState)
+  const [userLog, dispatch] = useReducer(userReducer, initialState);
 
-useEffect(()=>{
-    localStorage.getItem("user", JSON.stringify(state.user));
-},[state.user])
+  let localData = localStorage.getItem("jwtToken");
+  if (localData) {
+    const decoded = jwt_decode(localData);
+    localData = JSON.parse(decoded);
+  }
 
+  useEffect(() => {
+    localStorage.setItem("jwtToken", JSON.stringify(userLog));
+  }, [userLog]);
 
   return (
     <context.Provider
       value={{
-        user: state.user,
-        error: state.error,
+        userLog,
         dispatch,
       }}
     >
-        {children}
+      {children}
     </context.Provider>
   );
-}
+};
