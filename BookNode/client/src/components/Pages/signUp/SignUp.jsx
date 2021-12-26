@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { userRegistration } from "../../../service/uesrs";
 import "./signUp.scss"
+
 const SignUp = () => {
+
   const [userSignUp, setUserSignUp] = useState({
     firstName: "",
     lastName: "",
@@ -13,11 +15,10 @@ const SignUp = () => {
   const handelInput = (e) => {
     setUserSignUp({ ...userSignUp, [e.target.name]: e.target.value });
   };
-
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(userSignUp);
   };
-  
   return (
     <div className="signUp-root">
   
@@ -74,6 +75,7 @@ const SignUp = () => {
      <Link to="/SignIn" className="link">I'm already registered</Link>
       {/* </div> */}
     </div>
+  
   );
 };
 

@@ -3,20 +3,21 @@ import { Route, Switch } from 'react-router-dom'
 import Home from '../Pages/home/Home'
 import  Payment  from "../Pages/payment/Payment";
 // import UserPage from "../Pages/userPage/UserPage";
-import Contact from '../Pages/contactUs/Contact'
-import About from '../Pages/about/About'
-import Books from '../Pages/books/Books'
+import Contact from "../Pages/contactUs/Contact";
+import About from "../Pages/about/About";
+import Books from "../Pages/books/Books";
 import SignIn from "../Pages/signIn/SignIn";
-import SignUp from '../Pages/signUp/SignUp'
+import SignUp from "../Pages/signUp/SignUp";
 import Footer from "../Features/footer/Footer";
 import NavBar from "../Features/navBar/NavBar";
-
+// import { context, ContextProvidor } from "../../context/context";
 
 const AppRouter = () => {
 
 
   return (
     <>
+    {/* <ContextProvidor> */}
       <NavBar />
 
     <Switch>
@@ -45,9 +46,9 @@ const AppRouter = () => {
     </Switch>
 
     <Footer/>
+    {/* </ContextProvidor> */}
    </>
     
   );
-}
+};
 export default AppRouter;
-
