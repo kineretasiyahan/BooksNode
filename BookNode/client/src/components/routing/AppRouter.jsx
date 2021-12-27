@@ -1,8 +1,12 @@
+import {useContext, useState} from "react";
+import { Route, Switch } from 'react-router-dom'
+import Home from '../Pages/Home/Home'
+import  Payment  from "../Pages/payment/Payment";
 import { useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "../Pages/home/Home";
 import Payment from "../Pages/payment/Payment";
-// import UserPage from "../Pages/userPage/UserPage";
+import UserPage from "../Pages/userPage/UserPage";
 import Contact from "../Pages/contactUs/Contact";
 import About from "../Pages/about/About";
 import Books from "../Pages/books/Books";
