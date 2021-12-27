@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { simulation } from "../../simulation";
+import { useState, useEffect, useContext } from "react";
 import { ImCart, ImHeart, ImUser } from "react-icons/im";
 import { getAllBooks } from "../../../service/books";
-import home1 from "../../imagesWeb/home1.jpeg";
+// import home1 from "../../imagesWeb/home1.jpeg";
 import Input from "../../Features/input/Input";
 import Image from "../../Features/image/Image";
 import "./home.scss";
+import { userDecoding } from "../../utils/userDecoding";
+import {Context} from "../../../context/context";
+
+
 
 const Home = () => {
+  const {user} = useContext(Context);
+  const curetUser= userDecoding(user);
+  console.log(curetUser);
   const [books, setBook] = useState([]);
   const [input, setInput] = useState("");
   const [searchBookResult, setSearchBookResult] = useState(books);
-  const [heightImg, setHeightImg] = useState(800);
+ 
 
   const onChangeInput = (e) => {
     setInput(e.target.value);
@@ -47,7 +53,7 @@ const Home = () => {
       <div
         className="home-intro animate__animated animate__zoomIn"
         style={{
-          backgroundImage: `url(https://images.pexels.com/photos/1165982/pexels-photo-1165982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=${heightImg}&w=${heightImg})`,
+          backgroundImage: `url(https://images.pexels.com/photos/1165982/pexels-photo-1165982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=${800}&w=${800})`,
         }}
       >
         <h1>
@@ -60,12 +66,22 @@ const Home = () => {
         <div className="home-search">
           <div className="search-icons">
             <a href="http://localhost:3000/">
+            {
+                curetUser? <p className="userInfo">{curetUser.firstName}</p>: ""
+            }
               <ImUser />
+
             </a>
             <a href="http://localhost:3000/Books">
+            {
+                curetUser? <p className="userInfo">{curetUser.books? curetUser.books.length: "0"}</p>: ""
+            }
               <ImHeart />
             </a>
             <a href="http://localhost:3000/Books">
+              {
+                curetUser? <p className="userInfo">{curetUser.books? curetUser.books.length: "0"}</p>: ""
+              }
               <ImCart />
             </a>
           </div>

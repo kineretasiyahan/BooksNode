@@ -1,34 +1,31 @@
-import React, { createContext, useEffect, useReducer } from "react";
-import userReducer from "./cases";
-import jwt_decode from "jwt-decode";
+import { createContext, useEffect, useReducer } from "react";
+import Reducer from "./cases";
 
-const initialState = {
-  user: null,
+
+const INITIAL_STATE = {
+  user: JSON.parse(localStorage.getItem("userToken") || null),
+  isFetching: false,
+  error: false,
 };
+export const Context = createContext(INITIAL_STATE);
 
-export const context = createContext();
-
-export const ContextProvidor = ({ children }) => {
-  const [userLog, dispatch] = useReducer(userReducer, initialState);
-
-  let localData = localStorage.getItem("jwtToken");
-  if (localData) {
-    const decoded = jwt_decode(localData);
-    localData = JSON.parse(decoded);
-  }
+export const ContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
 
   useEffect(() => {
-    localStorage.setItem("jwtToken", JSON.stringify(userLog));
-  }, [userLog]);
+    localStorage.setItem("userToken", JSON.stringify(state.user))
+  }, [state.user])
 
   return (
-    <context.Provider
+    <Context.Provider
       value={{
-        userLog,
+        user: state.user,
+        isFetching: state.isFetching,
+        error: state.error,
         dispatch,
       }}
     >
       {children}
-    </context.Provider>
+    </Context.Provider>
   );
 };

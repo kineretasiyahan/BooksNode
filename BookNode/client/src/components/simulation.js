@@ -1,10 +1,10 @@
 import about1 from "./imagesWeb/about1.jpeg"
 import about2 from "./imagesWeb/about2.jpeg"
-import about3 from "./imagesWeb/about3.jpeg"
+// import about3 from "./imagesWeb/about3.jpeg"
 import about4 from "./imagesWeb/about4.jpeg"
 
-const height = "200"
-const width = "200"
+// const height = "200"
+// const width = "200"
 
 // import {about4} from "./imagesWeb/about4.jpeg"
 

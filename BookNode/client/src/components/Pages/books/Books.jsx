@@ -1,17 +1,15 @@
 import { useState, useEffect, useContext } from "react";
 import { getAllBooks } from "../../../service/books";
-import { simulation } from "../../simulation";
 import Input from "../../Features/input/Input";
-import { context } from "../../../context/context";
+import { Context } from "../../../context/context";
 import { ImCart, ImHeart, ImUser } from "react-icons/im";
 import "./books.scss";
 const Books = () => {
-  // const {globalState, globalDispatch} = useContext(context)
-  // const user = JSON.parse(localStorage.getItem("jwtToken"));
+
   const [books, setBook] = useState([]);
   const [input, setInput] = useState("");
   const [searchBookResult, setSearchBookResult] = useState(books);
-  const { state, dispatch } = useContext(context);
+  const {  isLoggedIn,userLog, dispatch } = useContext(Context);
 
   const onChangeInput = (e) => {
     setInput(e.target.value);
@@ -31,7 +29,7 @@ const Books = () => {
       .catch((e) => {
         console.error(e);
       });
-    //  console.log(books);
+
   }, []);
 
   let currentBooks;
@@ -57,7 +55,7 @@ const Books = () => {
             </a>
             {/* <h2>{user.firstName}</h2> */}
           <div>
-            {state.isLoggedIn?(
+            {/* {userLog?(
               <button onClick={() => dispatch({ type: "LOGOUT" })}>
                 Log out
               </button>
@@ -65,7 +63,7 @@ const Books = () => {
               <button onClick={() => dispatch({ type: "LOGIN_SUCCESS" })}>
               Log In
             </button>
-            )}
+            )} */}
           </div>
           
           </div>

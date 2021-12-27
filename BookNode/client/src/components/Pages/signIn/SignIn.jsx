@@ -1,12 +1,14 @@
-import React, { useState ,useContext} from "react";
+import { useState, useContext } from "react";
 import { userLogin } from "../../../service/uesrs";
 import { Link } from "react-router-dom";
-import { LOGIN_SUCCESS,LOGOUT } from "../../../context/constans";
-import {LogSucces,Logout} from '../../../context/actionns'
-import { context} from "../../../context/context"
+import {
+  LOGIN_SUCCESS,
+  LOGIN_START,
+  LOGIN_FAILURE,
+} from "../../../context/constans";
+import { Context } from "../../../context/context";
 import "./signIn.scss";
 const SignInForm = () => {
-
   const [details, setDetails] = useState({
     email: "",
     password: "",
@@ -14,33 +16,29 @@ const SignInForm = () => {
 
   const [userIn, setUserIn] = useState({});
   const [errorLoginHa, setErrorLoginHa] = useState({});
-const {userLog, dispatch } = useContext(context);
-
+  const {dispatch } = useContext(Context);
 
   const handelInput = (e) => {
-    setDetails({...details,[e.target.name]: e.target.value });
+    setDetails({ ...details, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = async(e) => {
-
+  const onSubmit = async (e) => {
     e.preventDefault();
-    debugger
-  await userLogin(details)
-      .then((res) => {
-        res.success? setUserIn(res): setErrorLoginHa(res)
-        try{
-
-    // userIn? LogSucces(userIn):Logout()
-     dispatch({ type: LOGIN_SUCCESS,payload:userIn })
-   }  
-      
-    catch(e){
-console.log(e);
+    dispatch({ type: LOGIN_START });
+    try {
+      await userLogin(details).then((res) => {
+        console.log(res);
+        res.success ? setUserIn(res) : setErrorLoginHa(res);
+        dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+      });
+    } catch (e) {
+      dispatch({ type: LOGIN_FAILURE });
+      console.log(e);
     }
-      })
-      .catch((error) => console.log(error));
 
-      userIn? window.location.pathname = '/' : window.location.pathname = '/SignIn' 
+    userIn
+      ? (window.location.pathname = "/")
+      : (window.location.pathname = "/SignIn");
   };
 
   console.log(errorLoginHa);
@@ -68,10 +66,7 @@ console.log(e);
           onChange={handelInput}
         />
         <p>{errorLoginHa?.message}</p>
-        <button
-          className="button-form"
-          type="submit"
-        >
+        <button className="button-form" type="submit">
           Login
         </button>
       </form>
