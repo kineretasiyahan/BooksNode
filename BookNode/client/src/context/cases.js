@@ -1,35 +1,35 @@
-import { LOGOUT, LOGIN_SUCCESS, LOGIN_FAILURE } from "./constans";
-// import {useReducer} from 'react'
-const userReducer = (state, action) => {
+import { LOGOUT, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_START } from "./constans";
+
+const Reducer = (state, action) => {
   switch (action.type) {
+    case LOGIN_FAILURE:
+      return {
+        user: null,
+        isFetching: false,
+        error: true,
+      };
+    case LOGIN_START:
+      return {
+        user: null,
+        isFetching: true,
+        error: false,
+      };
     case LOGIN_SUCCESS:
       return {
         user: action.payload,
-        isLoggedIn:true,
-       // user: null,
-        // error: true,
+        isFetching: false,
+        error: false,
       };
-    // case LOGIN_FAILURE:
-    //   return {
-    //     user: action.payload,
-    //     error: false,
-    //   };
     case LOGOUT:
       return {
-        isLoggedIn:false
-        // user: null,
-        // error: false,
+        user: null,
+        isFetching: false,
+        error: false,
       };
-      default:
-          return state;
+
+    default:
+      return state;
   }
 };
-export default userReducer;
 
-// const useGlobalState =()=>{
-//   const [globalState, globalDispatch] = useReducer(userReducer,{
-//     isLoggedIn:false
-//   })
-//   return {globalState, globalDispatch}
-// }
-// export default useGlobalState
+export default Reducer;
