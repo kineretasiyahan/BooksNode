@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getAllBooks } from "../../../service/books";
-import { simulation } from "../../simulation";
 import Input from "../../Features/input/Input";
-
+import { Context } from "../../../context/context";
 import { ImCart, ImHeart, ImUser } from "react-icons/im";
 import "./books.scss";
 const Books = () => {
@@ -10,6 +9,7 @@ const Books = () => {
   const [books, setBook] = useState([]);
   const [input, setInput] = useState("");
   const [searchBookResult, setSearchBookResult] = useState(books);
+  const {  isLoggedIn,userLog, dispatch } = useContext(Context);
 
   const onChangeInput = (e) => {
     setInput(e.target.value);
@@ -29,7 +29,7 @@ const Books = () => {
       .catch((e) => {
         console.error(e);
       });
-    //  console.log(books);
+
   }, []);
 
   let currentBooks;
@@ -53,8 +53,21 @@ const Books = () => {
             <a href="http://localhost:3000/Books">
               <ImCart />
             </a>
+            {/* <h2>{user.firstName}</h2> */}
+          <div>
+            {/* {userLog?(
+              <button onClick={() => dispatch({ type: "LOGOUT" })}>
+                Log out
+              </button>
+            ):(
+              <button onClick={() => dispatch({ type: "LOGIN_SUCCESS" })}>
+              Log In
+            </button>
+            )} */}
           </div>
-
+          
+          </div>
+      
           <Input
             name="search-input"
             handleChange={onChangeInput}
@@ -64,29 +77,29 @@ const Books = () => {
         </div>
       </div>
       <div className="books-root-card">
-      {currentBooks.map((book, index, array) => {
-        return (
-          <div key={index} className="books-card-images">
-            <img className="books-img" src={book.pic} />
-            <h5>
-              <span className="books-title">Name: </span>
-              {book.name}
-            </h5>
-            <h5>
-              <span className="books-title">Author: </span>
-              {book.author}
-            </h5>
-            <p>
-              <span className="books-title">summary: </span>
-              {book.summary?.slice(0, 50) + "..."}
-            </p>
-            <i className="read-moor">click to red moor...</i>
-            <button>
-              <i>Add to {<ImCart />}</i>
-            </button>
-          </div>
-        );
-      })}
+        {currentBooks.map((book, index, array) => {
+          return (
+            <div key={index} className="books-card-images">
+              <img className="books-img" src={book.pic} />
+              <h5>
+                <span className="books-title">Name: </span>
+                {book.name}
+              </h5>
+              <h5>
+                <span className="books-title">Author: </span>
+                {book.author}
+              </h5>
+              <p>
+                <span className="books-title">summary: </span>
+                {book.summary?.slice(0, 50) + "..."}
+              </p>
+              <i className="read-moor">click to red moor...</i>
+              <button>
+                <i>Add to {<ImCart />}</i>
+              </button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

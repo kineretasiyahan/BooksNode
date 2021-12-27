@@ -1,6 +1,3 @@
-import jwt_decode from "jwt-decode";
-import checkToken from "../components/utils/checkToken"
-
 
 export const getAllUsers = async () => {
   return await fetch("http://localhost:3002/api/users")
@@ -33,24 +30,27 @@ export const userLogin = async (user) => {
 
 
   try {
-    if (!localStorage.jwtToken) {
-      await fetch("http://localhost:3002/api/users/login", options)
+    // if (localStorage.userToken || localStorage.userToken === null) {
+      debugger;
+     return await fetch("http://localhost:3002/api/users/login", options)
         .then((response) => response.json())
         .then((response) => {
-          if (!response.data) throw response;
+          if (!response.data) throw new Error(response) ;
+          console.log(response);
           return response;
         })
-        .then((response) => localStorage.setItem("jwtToken", response.data))
+        // .then((response) => localStorage.setItem("userToken",response.data))
         .catch((err) => {
           throw err;
         });
-    }
+    // }
 
-    const token = localStorage.getItem("jwtToken");
-    const decoded = jwt_decode(token);
-    checkToken(decoded);
+    // const token = localStorage.getItem("userToken");
+    // const decoded = jwt_decode(token);
+    // checkToken(decoded);
 
   } catch (error) {
+    // console.log(error);
      return error
   }
 };

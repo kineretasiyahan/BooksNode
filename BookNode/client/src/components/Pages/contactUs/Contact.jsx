@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-import Input from "../../Features/input/Input";
+import { useState, useRef, useEffect } from "react";
 import contact2 from "../../imagesWeb/contact2.jpeg"
 import "./contact.scss"
 

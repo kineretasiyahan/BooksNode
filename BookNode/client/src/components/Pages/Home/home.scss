@@ -76,14 +76,22 @@
   margin-left: 10px;
 
   > a {
+    position: relative;
     font-size: 25px;
-    margin: 8px;
+    margin-left:15px;
+    text-decoration: none;
     color: rgb(255, 255, 255);
-    font-weight: 600;
+    font-weight: 800;
 
     &:hover {
       color: $hoverMainColor;
-      // font-size: 25px;
     }
+  }
+
+  > a >.userInfo{
+    // position: absolute;
+    margin: -12px;
+    padding: 10px;
+    font-size: 15px;
   }
 }
