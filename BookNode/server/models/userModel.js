@@ -9,7 +9,9 @@ let joiSchema = Joi.object({
     email: Joi.string().min(2).max(50).required(),
     password: Joi.string().min(1).max(200).required(),
     // books:Joi.array().items(Joi.object().keys().min(1)),ref:'book'
-    books: Joi.array().valid(mongoose.Schema.Types.ObjectId, "book")
+    books: Joi.array().valid(mongoose.Schema.Types.ObjectId, "book"),
+    wishList: Joi.array().valid(mongoose.Schema.Types.ObjectId, "book")
+
 })
 const userValidate = (userData) => {
     const joiSchemaValid = joiSchema.validate(userData);
