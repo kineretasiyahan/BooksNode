@@ -31,27 +31,48 @@ export const userLogin = async (user) => {
 
   try {
     // if (localStorage.userToken || localStorage.userToken === null) {
-      debugger;
      return await fetch("http://localhost:3002/api/users/login", options)
         .then((response) => response.json())
         .then((response) => {
           if (!response.data) throw new Error(response) ;
-          console.log(response);
           return response;
         })
-        // .then((response) => localStorage.setItem("userToken",response.data))
         .catch((err) => {
           throw err;
         });
+
     // }
 
-    // const token = localStorage.getItem("userToken");
-    // const decoded = jwt_decode(token);
-    // checkToken(decoded);
-
   } catch (error) {
-    // console.log(error);
      return error
   }
 };
 
+
+
+export const addBookToCart = async (user, bookId) => {
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({_id: bookId}),
+  };
+
+
+  try {
+    // if (localStorage.userToken || localStorage.userToken === null) {
+     return await fetch(`http://localhost:3002/api/users//addBook/${user._id}`, options)
+        .then((response) => response.json())
+        .then((response) => {
+          if (!response.data) throw new Error(response) ;
+          return response;
+        })
+        .catch((err) => {
+          throw err;
+        });
+
+    // }
+
+  } catch (error) {
+     return error
+  }
+};
