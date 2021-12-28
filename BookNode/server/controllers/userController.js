@@ -13,7 +13,11 @@ const getAllUsers = async (req, res) => {
       res.status(200).json({ data: result });
     });
   } catch (err) {
-    res.status(301).json("error in method get");
+    res.status(301).json({
+      message: "error in method get",
+      success: false,
+      error: err.message
+    })
   }
 };
 const getUserById = async (req, res) => {
@@ -23,7 +27,11 @@ const getUserById = async (req, res) => {
       res.status(200).json({ data: result });
     });
   } catch (err) {
-    res.status(301).json("error in method get");
+    res.status(301).json({
+      message: "error in method get",
+      success: false,
+      error: err.message
+    })
   }
 };
 
@@ -38,15 +46,12 @@ const createUser = async (req, res) => {
       res.status(200).json({ data: result });
     });
   } catch (err) {
-    res.status(301).json("error in method post");
+    res.status(301).json({
+      message: "error in method post",
+      success: false,
+      error: err.message
+    })
   }
-  // catch (err) {
-  //     res.status(301).json({
-  //         message: "error in method post",
-  //         success: false,
-  //         error: err.message
-  //     })
-  // }
 };
 const updateUser = async (req, res) => {
   try {
@@ -59,7 +64,11 @@ const updateUser = async (req, res) => {
       }
     );
   } catch (err) {
-    res.status(301).json("error in method get");
+    res.status(301).json({
+      message: "error in method put",
+      success: false,
+      error: err.message
+    })
   }
 };
 const deleteeUser = async (req, res) => {
@@ -69,7 +78,11 @@ const deleteeUser = async (req, res) => {
       res.status(200).json({ data: result });
     });
   } catch (err) {
-    res.status(301).json("error in method get");
+    res.status(301).json({
+      message: "error in method delete",
+      success: false,
+      error: err.message
+    })
   }
 };
 const register = async (req, res) => {
@@ -100,44 +113,11 @@ const register = async (req, res) => {
       }
     });
   } catch (err) {
-    console.log(err);
-  }
-};
-
-const logIn2 = async (req, res) => {
-  try {
-    const { email, password } = req.body.user;
-    const validData = userValidate(req.body.user);
-    if (validData.error) {
-      res.json(validData.error.details);
-    }
-    const user = await userModel.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ email: "User not found" });
-    }
-    console.log(user);
-    bycrypt.compare(password, user.password).then((isMatch) => {
-      if (isMatch) {
-        const payload = {
-          id: user._id,
-          email: email,
-        };
-        jwt.sign(payload, SECRET_KEY, { expiresIn: 3600 }, (err, token) => {
-          if (err) return res.status(404).json(err);
-          res.json({
-            success: true,
-            token: token,
-            // expiresTokenIn: "60min",
-            email: payload.email,
-          });
-        });
-      } else {
-        return res.status(400).json({ password: "Password incorrect" });
-      }
-    });
-    // });
-  } catch (error) {
-    console.log(error.message);
+    res.status(301).json({
+      message: "error in register",
+      success: false,
+      error: err.message
+    })
   }
 };
 
@@ -217,28 +197,7 @@ const logIn = async (req, res) => {
 };
 
 const addBookToUser = async (req, res) => {
-  // console.log(req.body._id);
-  // console.log(req.params.id);
   try {
-    // let book;
-    // let user;
-    // await bookModel.findById(req.body._id, (err, result) => {
-    //     if (err) throw err
-    //     // book = result;
-    // });
-    // await userModel.findById(req.params.id, (err, result) => {
-    //     if (err) throw err;
-    //     // user = result
-    // })
-    // console.log(book)
-    // if(!book) throw new Error("book not fond!")
-
-    // const userId = await userModel.findById(req.params.id);
-    // if (!userId) throw new Error("user not fond!")
-    // console.log(userId)
-
-    // userId.books.push(bookId);
-    // await userId.save();
     const bookId = await bookModel.findById(req.body._id);
     console.log(bookId);
     const userId = await userModel.findById(req.params.id);
