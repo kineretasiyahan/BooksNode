@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "../Pages/home/Home";
 import Payment from "../Pages/payment/Payment";
-// import UserPage from "../Pages/userPage/UserPage";
 import Contact from "../Pages/contactUs/Contact";
 import About from "../Pages/about/About";
 import Books from "../Pages/books/Books";
@@ -14,13 +13,12 @@ import { ContextProvider, Context } from "../../context/context";
 import { userDecoding } from "../utils/userDecoding";
 
 const AppRouter = () => {
-  // const [currentUser, setCurrentUser] = useState({})
-  // let currentUser;
-  let { user } = useContext(Context);
-  if (user) {
-    user = userDecoding(user);
-  }
-  // console.log(user);
+
+  // let { user } = useContext(Context);
+  // if (user) {
+  //   user = userDecoding(user);
+  // }
+
   return (
     <>
       <ContextProvider>
