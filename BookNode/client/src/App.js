@@ -10,7 +10,6 @@ function App() {
       <Router>
         <AppRouter />
       </Router>
- 
   );
 }
 export default App;
