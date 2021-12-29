@@ -12,8 +12,13 @@ import {Context} from "../../../context/context";
 
 const Home = () => {
   const {user} = useContext(Context);
-  const curetUser= userDecoding(user);
-  console.log(curetUser);
+  let curetUser;
+  if(user){
+    curetUser= userDecoding(user);
+    console.log(curetUser);
+  }
+
+  
   const [books, setBook] = useState([]);
   const [input, setInput] = useState("");
   const [searchBookResult, setSearchBookResult] = useState(books);
