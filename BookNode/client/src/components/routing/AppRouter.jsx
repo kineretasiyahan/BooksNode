@@ -1,7 +1,6 @@
 import {useContext, useState} from "react";
-import { Route, Switch } from 'react-router-dom'
 import { Route, Switch } from "react-router-dom";
-import Home from "../Pages/home/Home";
+import Home from "../Pages/Home/Home";
 import Payment from "../Pages/payment/Payment";
 import Contact from "../Pages/contactUs/Contact";
 import About from "../Pages/about/About";
@@ -47,7 +46,6 @@ const AppRouter = () => {
             <SignIn />
           </Route>
         </Switch>
-
         <Footer />
       </ContextProvider>
     </>
