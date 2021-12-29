@@ -8,6 +8,7 @@ import {
 } from "../../../context/constans";
 import { Context } from "../../../context/context";
 import "./signIn.scss";
+
 const SignInForm = () => {
   const [details, setDetails] = useState({
     email: "",
