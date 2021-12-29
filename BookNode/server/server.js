@@ -9,7 +9,7 @@ const userRouter = require("./routes/userRoute");
 const bookRouter = require("./routes/bookRouter");
 
 app.use(express.json());
-app.use(express.urlencoded({ extended:true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 db.on("error", () => {
   console.log("error in function on db");

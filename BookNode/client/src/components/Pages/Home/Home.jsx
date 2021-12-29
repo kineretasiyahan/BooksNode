@@ -13,12 +13,11 @@ import {Context} from "../../../context/context";
 const Home = () => {
   const {user} = useContext(Context);
   let curetUser;
-  if(user){
+  if (user) {
     curetUser= userDecoding(user);
-    console.log(curetUser);
   }
-
   
+  console.log(curetUser);
   const [books, setBook] = useState([]);
   const [input, setInput] = useState("");
   const [searchBookResult, setSearchBookResult] = useState(books);
@@ -79,13 +78,13 @@ const Home = () => {
             </a>
             <a href="http://localhost:3000/Books">
             {
-                curetUser? <p className="userInfo">{curetUser.books? curetUser.books.length: "0"}</p>: ""
+                curetUser? <p className="userInfo">{curetUser.books? curetUser.wishList.length:0}</p>: ""
             }
               <ImHeart />
             </a>
             <a href="http://localhost:3000/Books">
               {
-                curetUser? <p className="userInfo">{curetUser.books? curetUser.books.length: "0"}</p>: ""
+                curetUser? <p className="userInfo">{curetUser.books? curetUser.books.length: 0}</p>: ""
               }
               <ImCart />
             </a>
@@ -110,6 +109,7 @@ const Home = () => {
                 image={book.pic}
                 author={book.author}
                 summary={book.summary?.slice(0, 80) + "..."}
+                id={book.i}
               />
             );
           }
