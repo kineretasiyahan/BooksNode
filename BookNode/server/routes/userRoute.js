@@ -1,16 +1,18 @@
 const express = require("express")
 const userRouter = express.Router()
 const userCtrl = require("../controllers/userController");
-const checkAuth=require('../middelware/middelware')
+const registerCtrl = require("../controllers/authorization/register")
+const logInCtrl = require('../controllers/authorization/logIn')
+const checkAuth = require('../middleware/isToken')
 
 userRouter.get('/', userCtrl.getAllUsers);
 userRouter.get('/:id', userCtrl.getUserById);
 userRouter.post('/', userCtrl.createUser);
-userRouter.post('/login',checkAuth, userCtrl.logIn);
-userRouter.post('/register', userCtrl.register);
+userRouter.post('/login', logInCtrl.logIn);
+userRouter.post('/register', registerCtrl.register);
 userRouter.put('/:id', userCtrl.updateUser);
 userRouter.put('/addBook/:id', userCtrl.addBookToUser);
 userRouter.delete('/:id', userCtrl.deleteeUser);
-userRouter.get('/show/:id',userCtrl.showBooks)
+userRouter.get('/show/:id', userCtrl.showBooks)
 
 module.exports = userRouter;
