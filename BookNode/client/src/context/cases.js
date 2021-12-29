@@ -1,4 +1,4 @@
-import { LOGOUT, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_START } from "./constans";
+import { LOGOUT, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_START,UPDATELOCALSTOREAGE } from "./constans";
 
 const Reducer = (state, action) => {
   switch (action.type) {
@@ -26,6 +26,12 @@ const Reducer = (state, action) => {
         isFetching: false,
         error: false,
       };
+      case UPDATELOCALSTOREAGE:
+      return{
+        user: action.payload,
+        isFetching: false,
+        error: false,
+      }
 
     default:
       return state;
