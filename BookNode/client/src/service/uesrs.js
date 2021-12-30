@@ -34,7 +34,8 @@ export const userLogin = async (user) => {
      return await fetch("http://localhost:3002/api/users/login", options)
         .then((response) => response.json())
         .then((response) => {
-          if (!response.data) throw new Error(response) ;
+          if (!response.data) throw response
+          // console.log(response);
           return response;
         })
         .catch((err) => {
