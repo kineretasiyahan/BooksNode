@@ -22,6 +22,7 @@ const getAllUsers = async (req, res) => {
     })
   }
 };
+
 const getUserById = async (req, res) => {
   try {
     userModel.findById(req.params.id, (error, result) => {
@@ -40,6 +41,7 @@ const getUserById = async (req, res) => {
     })
   }
 };
+
 const createUser = async (req, res) => {
   try {
     const validData = userValidate(req.body.user);
@@ -62,6 +64,7 @@ const createUser = async (req, res) => {
     })
   }
 };
+
 const updateUser = async (req, res) => {
   try {
     userModel.findByIdAndUpdate(
@@ -84,6 +87,7 @@ const updateUser = async (req, res) => {
     })
   }
 };
+
 const deleteeUser = async (req, res) => {
   try {
     userModel.findByIdAndDelete(req.params.id, (error, result) => {
@@ -102,6 +106,7 @@ const deleteeUser = async (req, res) => {
     })
   }
 };
+
 const addBookToUser = async (req, res) => {
   try {
     const bookId = await bookModel.findById(req.body._id);
@@ -125,6 +130,7 @@ const addBookToUser = async (req, res) => {
     });
   }
 };
+
 const addBookToWishListUser = async (req, res) => {
   try {
     const bookId = await bookModel.findById(req.body._id);
@@ -149,6 +155,7 @@ const addBookToWishListUser = async (req, res) => {
     });
   }
 };
+
 const showBooks = async (req, res) => {
   try {
     const user = await userModel.findById(req.params.id);
@@ -170,6 +177,7 @@ const showBooks = async (req, res) => {
     });
   }
 };
+
 const showBooksInWishList = async (req, res) => {
   try {
     const user = await userModel.findById(req.params.id);
@@ -192,6 +200,8 @@ const showBooksInWishList = async (req, res) => {
     
   }
 };
+
+
 const deleteBook = async (req, res) => {
   try {
     // const user = await userModel.findById(req.params.id);

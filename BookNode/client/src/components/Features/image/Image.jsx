@@ -4,22 +4,20 @@ import "./image.scss";
 import { addBookToCart } from "../../../service/uesrs";
 import { Context } from "../../../context/context";
 import { userDecoding } from "../../utils/userDecoding";
-// import {UpDateLocalStorege} from "../../../context/actionns"
+
 
 import { UPDATELOCALSTOREAGE } from "../../../context/constans";
 const Image = ({ nameBook, author, summary, image, id }) => {
-  // console.log(id);
   const { user, dispatch } = useContext(Context);
   let curetUser;
   if (user) {
     curetUser = userDecoding(user);
-    console.log(curetUser);
   }
   const [isFetch, setIsFetch] = useState(false);
 
   const add = async () => {
     try {
-      debugger;
+      // debugger;
       await addBookToCart(curetUser, id).then((res) => {
         console.log(res);
         dispatch({ type: UPDATELOCALSTOREAGE, payload: res });

@@ -1,12 +1,30 @@
 const { bookModel, bookValidate } = require("../models/bookModel");
-
+const {formatError} = require("../errors function/errorsFunctions")
 const getAllBooks = async (req, res) => {
+  // try {
+  //   const books = await bookModel.find({});
+  //   if (!books) throw error;
+  //   res.status(200).json({ data: books });
+  // } catch (err) {
+  //   res.status(301).json(err.message + " error in method get books");
+  // }
+
   try {
     const books = await bookModel.find({});
-    if (!books) throw error;
-    res.status(200).json({ data: books });
+    formatError(books)
+    res.status(200).json({
+      success: true,
+      message: "you get all the books!",
+      data: books,
+    });
+
+
   } catch (err) {
-    res.status(301).json(err.message + " error in method get books");
+    res.status(301).json({
+      success: false,
+      message: err.message,
+      error: err.message
+    })
   }
 };
 

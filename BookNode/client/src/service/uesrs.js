@@ -28,25 +28,21 @@ export const userLogin = async (user) => {
   };
 
   try {
-    // if (localStorage.userToken || localStorage.userToken === null) {
     return await fetch("http://localhost:3002/api/users/login", options)
       .then((response) => response.json())
       .then((response) => {
-        if (!response.data) throw new Error(response);
+        if (!response.data) throw response;
         return response;
       })
       .catch((err) => {
         throw err;
       });
-
-    // }
   } catch (error) {
     return error;
   }
 };
 
 export const addBookToCart = async (user, bookId) => {
-  // console.log(user._id, bookId);
   const options = {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -54,14 +50,12 @@ export const addBookToCart = async (user, bookId) => {
   };
   try {
     debugger;
-    // if (localStorage.userToken || localStorage.userToken === null) {
     return await fetch(
       `http://localhost:3002/api/users/addBook/${user._id}`,
       options
     )
       .then((response) => response.json())
       .then((response) => {
-        // console.log(response)
         if (!response.data) throw response;
         console.log(response.data);
         return response.data;
@@ -69,7 +63,6 @@ export const addBookToCart = async (user, bookId) => {
       .catch((err) => {
         throw err;
       });
-    // }
   } catch (error) {
     return error;
   }

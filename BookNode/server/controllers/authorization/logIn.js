@@ -17,7 +17,7 @@ const logIn = async (req, res) => {
     try {
         // מנסים למצוא משתמש לפי איימל
         const user = await userModel.findOne({ email });
-        console.log(req)
+        // console.log(req)
         // במידה ולא קיים מחזירים תשובה לקליינט שלא קיים משתמש כזה
         if (!user) {
             return res.status(400).json({

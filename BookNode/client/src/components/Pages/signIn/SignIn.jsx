@@ -36,7 +36,6 @@ const SignInForm = () => {
       dispatch({ type: LOGIN_FAILURE });
       console.log(e);
     }
-
     userIn
       ? (window.location.pathname = "/")
       : (window.location.pathname = "/SignIn");
