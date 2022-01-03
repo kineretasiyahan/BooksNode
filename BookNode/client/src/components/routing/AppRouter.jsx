@@ -1,5 +1,5 @@
 import {useContext, useState} from "react";
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch } from "react-router-dom";
 import Home from "../Pages/home/Home";
 import Payment from "../Pages/payment/Payment";
 import Contact from "../Pages/contactUs/Contact";
@@ -14,10 +14,10 @@ import { userDecoding } from "../utils/userDecoding";
 
 const AppRouter = () => {
 
-  // let { user } = useContext(Context);
-  // if (user) {
-  //   user = userDecoding(user);
-  // }
+  let { user } = useContext(Context);
+  if (user) {
+    user = userDecoding(user);
+  }
 
   return (
     <>
@@ -46,7 +46,6 @@ const AppRouter = () => {
             <SignIn />
           </Route>
         </Switch>
-
         <Footer />
       </ContextProvider>
     </>

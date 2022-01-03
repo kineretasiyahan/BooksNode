@@ -1,4 +1,4 @@
-import {LOGOUT, LOGIN_SUCCESS,LOGIN_FAILURE, LOGIN_START} from './constans'
+import {LOGOUT, LOGIN_SUCCESS,LOGIN_FAILURE, LOGIN_START,UPDATELOCALSTOREAGE} from './constans'
 
 export const LoginStart = (userCredentials) => ({
     type:LOGIN_START,
@@ -16,4 +16,9 @@ export const LoginFailure = ()=>({
 
 export const Logout = ()=>({
     type:LOGOUT,
+});
+
+export const UpDateLocalStorege = (user)=>({
+    type:UPDATELOCALSTOREAGE,
+    payload:user,
 });

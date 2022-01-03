@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { ImCart, ImHeart, ImUser } from "react-icons/im";
 import { getAllBooks } from "../../../service/books";
-// import home1 from "../../imagesWeb/home1.jpeg";
 import Input from "../../Features/input/Input";
 import Image from "../../Features/image/Image";
 import "./home.scss";
@@ -109,7 +108,7 @@ const Home = () => {
                 image={book.pic}
                 author={book.author}
                 summary={book.summary?.slice(0, 80) + "..."}
-                id={book.i}
+                id={book._id}
               />
             );
           }

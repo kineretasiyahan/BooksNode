@@ -11,7 +11,6 @@ let joiSchema = Joi.object({
     // books:Joi.array().items(Joi.object().keys().min(1)),ref:'book'
     books: Joi.array().valid(mongoose.Schema.Types.ObjectId, "book"),
     wishList: Joi.array().valid(mongoose.Schema.Types.ObjectId, "book")
-
 })
 const userValidate = (userData) => {
     const joiSchemaValid = joiSchema.validate(userData);

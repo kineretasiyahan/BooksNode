@@ -8,6 +8,7 @@ import {
 } from "../../../context/constans";
 import { Context } from "../../../context/context";
 import "./signIn.scss";
+
 const SignInForm = () => {
   const [details, setDetails] = useState({
     email: "",
@@ -35,7 +36,6 @@ const SignInForm = () => {
       dispatch({ type: LOGIN_FAILURE });
       console.log(e);
     }
-    // console.log(userIn);
     userIn
       ? (window.location.pathname = "/")
       : (window.location.pathname = "/SignIn");
