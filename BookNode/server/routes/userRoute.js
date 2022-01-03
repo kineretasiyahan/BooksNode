@@ -12,7 +12,9 @@ userRouter.post('/login', logInCtrl.logIn);
 userRouter.post('/register', registerCtrl.register);
 userRouter.put('/:id', userCtrl.updateUser);
 userRouter.put('/addBook/:id', userCtrl.addBookToUser);
+userRouter.put('/addWishList/:id', userCtrl.addBookToWishListUser);
+userRouter.delete('/deleteBook/:id', userCtrl.deleteBook);
 userRouter.delete('/:id', userCtrl.deleteeUser);
 userRouter.get('/show/:id', userCtrl.showBooks)
-
+userRouter.get('/showWishList/:id', userCtrl.showBooksInWishList)
 module.exports = userRouter;
