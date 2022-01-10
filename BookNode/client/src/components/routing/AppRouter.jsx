@@ -1,7 +1,7 @@
-import {useContext, useState} from "react";
+import { useContext, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "../Pages/home/Home";
-import Payment from "../Pages/payment/Payment";
+// import Payment from "../Pages/payment/Payment";
 import Contact from "../Pages/contactUs/Contact";
 import About from "../Pages/about/About";
 import Books from "../Pages/books/Books";
@@ -9,11 +9,12 @@ import SignIn from "../Pages/signIn/SignIn";
 import SignUp from "../Pages/signUp/SignUp";
 import Footer from "../Features/footer/Footer";
 import NavBar from "../Features/navBar/NavBar";
+import Cart from "../Pages/cart/Cart";
+import WishList from "../Pages/wishList/WishList"
 import { ContextProvider, Context } from "../../context/context";
 import { userDecoding } from "../utils/userDecoding";
 
 const AppRouter = () => {
-
   let { user } = useContext(Context);
   if (user) {
     user = userDecoding(user);
@@ -30,9 +31,15 @@ const AppRouter = () => {
           <Route path="/Books">
             <Books />
           </Route>
-          <Route path="/Payment">
-            <Payment />
+          <Route path="/Cart">
+            <Cart />
           </Route>
+          <Route path="/WishList">
+            <WishList/>
+          </Route>
+          {/* <Route path="/Payment">
+            <Payment />
+          </Route> */}
           <Route path="/About">
             <About />
           </Route>

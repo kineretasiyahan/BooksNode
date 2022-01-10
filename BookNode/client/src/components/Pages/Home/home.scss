@@ -43,10 +43,11 @@
 .home-search {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  // justify-content: space-around;
   height: 100%;
   width: 100%;
   padding: 10px;
+  
   // background-color: rgb(12, 12, 11);
   // background-color: rgb(34, 33, 33);
   background-color: $mainColor;
@@ -60,6 +61,7 @@
     border-radius: 122px 122px 122px 122px;
     color: black;
     transition: all 0.5s ease;
+    
 
     &:focus {
       background-color: $hoverMainColor;
@@ -74,6 +76,7 @@
   align-items: center;
   justify-content: space-between;
   margin-left: 10px;
+  
 
   > a {
     position: relative;

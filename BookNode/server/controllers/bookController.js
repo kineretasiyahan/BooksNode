@@ -1,30 +1,22 @@
 const { bookModel, bookValidate } = require("../models/bookModel");
-const {formatError} = require("../errors function/errorsFunctions")
-const getAllBooks = async (req, res) => {
-  // try {
-  //   const books = await bookModel.find({});
-  //   if (!books) throw error;
-  //   res.status(200).json({ data: books });
-  // } catch (err) {
-  //   res.status(301).json(err.message + " error in method get books");
-  // }
+const { formatError } = require("../errors function/errorsFunctions");
 
+const getBooks = async (req, res) => {
   try {
+    // console.log(req);
     const books = await bookModel.find({});
-    formatError(books)
+    formatError(books);
     res.status(200).json({
       success: true,
       message: "you get all the books!",
       data: books,
     });
-
-
   } catch (err) {
-    res.status(301).json({
+    res.status(400).json({
       success: false,
-      message: err.message,
-      error: err.message
-    })
+      message: "filed to get all the books",
+      err: err.message,
+    });
   }
 };
 
@@ -35,18 +27,18 @@ const getBookById = async (req, res) => {
       res.status(200).json({ data: result });
     });
   } catch (err) {
-    res.status(301).json("error in method get books");
+    res.status(301).json(" books error");
   }
 };
 
 const updateBookById = async (req, res) => {
-  try {
+  try { 
     bookModel.findOneAndUpdate(req.params.id, (error, result) => {
       if (error) throw error;
       res.status(200).json({ data: result });
     });
   } catch (err) {
-    res.status(301).json("error in method get books");
+    res.status(301).json("method get books");
   }
 };
 
@@ -54,14 +46,14 @@ const deleteBookById = async (req, res) => {
   try {
     bookModel.findByIdAndDelete(req.params.id, (error, result) => {
       if (error) throw error;
-            res.status(200).json({
+      res.status(200).json({
         success: true,
         message: "success",
         data: result,
       });
     });
   } catch (err) {
-    res.status(301).json("error in method get books");
+    res.status(301).json("error in method get "+ err.message);
   }
 };
 
@@ -72,12 +64,12 @@ const createBook = async (req, res) => {
       return res.status(200).json({ data: result });
     });
   } catch (err) {
-    res.status(301).json("error in method get books");
+    res.status(301).json("error in method post "+ err.message);
   }
 };
 
 module.exports = {
-  getAllBooks,
+  getBooks,
   createBook,
   getBookById,
   updateBookById,
