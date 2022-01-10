@@ -25,13 +25,10 @@ const NavBar = () => {
           Home
         </Link>
         <Link className="link" to="/Books">
-          Books
+          Our books
         </Link>
         <Link className="link" to="About">
-          About
-        </Link>
-        <Link className="link" to="/Payment">
-          Payment
+          About us
         </Link>
         <Link className="link" to="/Contact">
           Contact

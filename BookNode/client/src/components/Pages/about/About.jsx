@@ -1,6 +1,6 @@
 import React from "react";
 import { aboutInfo } from "../../simulation";
-import about3 from "../../imagesWeb/about3.jpeg"
+import about3 from "../../imagesWeb/about3.jpeg";
 
 import "./about.scss";
 
@@ -9,7 +9,7 @@ const About = () => {
     <div className="about-root">
       <div className="about-intro">
         <div className="about-sun">
-          <h1>About ase</h1>
+          <h1>About us</h1>
           <span>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas
             rerum iure cumque at veniam laboriosam suscipit. Accusamus laborum
@@ -22,7 +22,6 @@ const About = () => {
             consequuntur tempora. Repellendus iusto saepe aliquam, quis
             dignissimos sunt voluptatum repellat hic!
           </span>
-
           <div className="about-images">
             {aboutInfo.map((item, index) => {
               return (
@@ -35,12 +34,8 @@ const About = () => {
             })}
           </div>
         </div>
-
         <div className="about-img">
-          <img
-            src={about3}
-            alt=""
-          />
+          <img src={about3} alt="" />
         </div>
       </div>
     </div>
