@@ -5,15 +5,8 @@ import Image from "../../Features/image/Image";
 import { Context } from "../../../context/context";
 import { ImCart, ImHeart, ImUser } from "react-icons/im";
 import "./books.scss";
-import { LOGOUT, LOGIN_SUCCESS } from "../../../context/constans";
-import { userLogOut, userLogin } from "../../../service/uesrs";
 import { userDecoding } from "../../utils/userDecoding";
-import {
-  addBookToCart,
-  addBookToWishListUser,
-  deleteBookFromWishListUser,
-} from "../../../service/uesrs";
-import { UPDATELOCALSTOREAGE } from "../../../context/constans";
+
 
 const Books = () => {
   const { user, dispatch } = useContext(Context);
@@ -30,28 +23,7 @@ const Books = () => {
   const [books, setBook] = useState([]);
   const [input, setInput] = useState("");
   const [searchBookResult, setSearchBookResult] = useState(books);
-  const add = async (id) => {
-    try {
-      // debugger;
-      await addBookToCart(curetUser, id).then((res) => {
-        console.log(res);
-        dispatch({ type: UPDATELOCALSTOREAGE, payload: res });
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const like = async (id) => {
-    try {
-      await addBookToWishListUser(curetUser, id).then((res) => {
-        console.log(res);
-        dispatch({ type: UPDATELOCALSTOREAGE, payload: res });
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  
   const onChangeInput = (e) => {
     setInput(e.target.value);
     const searchResult = books.filter((book) => {
@@ -91,7 +63,7 @@ const Books = () => {
                 </button>
               </a>
             ) : (
-              <a href="http://localhost:3000/Books">
+              <a href="http://localhost:3000/">
                 <button onClick={() => dispatch({ type: "LOGIN_SUCCESS" })}>
                   Log in
                 </button>
@@ -146,46 +118,7 @@ const Books = () => {
               author={book.author}
               summary={book.summary?.slice(0, 80) + "..."}
               id={book._id}
-              button={book.name}
-              
-            />
-            
-          );
-          //       <div key={index} className="books-card-images">
-          //         <img className="books-img" src={book.pic} />
-          //         <h5>
-          //           <span className="books-title">Name: </span>
-          //           {book.name}
-          //         </h5>
-          //         <h5>
-          //           <span className="books-title">Author: </span>
-          //           {book.author}
-          //         </h5>
-          //         <p>
-          //           <span className="books-title">summary: </span>
-          //           {book.summary?.slice(0, 50) + "..."}
-          //         </p>
-          //         <i className="read-moor">click to red moor...</i>
-          //         <button>
-          //           <i>  {<ImCart />}</i>
-          //         </button>
-          //         {/* <button>
-          //           <i> {}<ImHeart/></i>
-          //         </button> */}
-          //         <button className="home-button" onClick={() => like()}>
-          //   {<ImHeart />}
-          // </button>
-          // </div>
-          // );
-        //   <button className="home-button" onClick={() => like()}>
-        //   {<ImHeart />}
-        // </button> 
-        })}
-  
-        
-        {/* <button className="home-button" onClick={() => add()}>
-          {<ImCart />}
-        </button>  */}
+            />)})}
       </div>
     </div>
   );

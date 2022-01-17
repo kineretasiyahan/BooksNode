@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { ImCart, ImHeart, ImUser } from "react-icons/im";
 import { getAllBooks } from "../../../service/books";
-import { showUserBooks } from "../../../service/uesrs";
 import Input from "../../Features/input/Input";
 import Image from "../../Features/image/Image";
 import "./home.scss";
@@ -9,7 +8,7 @@ import { userDecoding } from "../../utils/userDecoding";
 import { Context } from "../../../context/context";
 
 const Home = () => {
-  const { user, dispatch } = useContext(Context);
+  const { user } = useContext(Context);
   let curetUser;
   if (user) {
     curetUser = userDecoding(user);
@@ -39,7 +38,6 @@ const Home = () => {
       .catch((e) => {
         console.error(e);
       });
-    // console.log(books);
   }, []);
 
   let currentBooks;
@@ -55,21 +53,9 @@ const Home = () => {
       <div
         className="home-intro animate__animated animate__zoomIn"
         style={{
-          backgroundImage: `url(https://images.pexels.com/photos/1165982/pexels-photo-1165982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=${800}&w=${800})`,
+          backgroundImage: `url(https://images.pexels.com/photos/1165982/pexels-photo-1165982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=${600}&w=${700})`,
         }}
       >
-        {/* if (isLoggedIn){" "}
-        {
-          <div>
-            <button>Logout</button>
-          </div>
-        }{" "}
-        else{" "}
-        {
-          <a href="http://localhost:3000">
-            <button>Login</button>
-          </a>
-        } */}
         <h1>
           {" "}
           Booknode <br /> A place where imagination has no boundaries ...
@@ -87,7 +73,7 @@ const Home = () => {
               )}
               <ImUser />
             </a>
-            <a href="http://localhost:3000/SignIn">
+            <a href="http://localhost:3000/WishList">
               {curetUser ? (
                 <p className="userInfo">
                   {curetUser.wishList ? curetUser.wishList.length : 0}
@@ -97,15 +83,15 @@ const Home = () => {
               )}
               <ImHeart />
             </a>
-            {/* <button onClick={()=>showUserBooks(curetUser)} > */}
-            <a href="http://localhost:3000/SignIn">
+            <a href="http://localhost:3000/Cart">
               {curetUser ? (
                 <p className="userInfo">
                   {curetUser.books ? curetUser.books.length : 0}
                 </p>
               ) : (
                 ""
-              )}
+              )
+              }
               <ImCart />
             </a>
             <Input
@@ -118,7 +104,7 @@ const Home = () => {
         </div>
         <div className="home-images">
           {currentBooks?.map((book, index) => {
-            if (index < 9) {
+            if (index < 8) {
               return (
                 <Image
                   key={book._id}

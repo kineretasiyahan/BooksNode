@@ -1,55 +1,24 @@
 import { useState, useEffect, useContext } from "react";
 import { ImCart, ImHeart, ImUser } from "react-icons/im";
-import { showUserBooks } from "../../../service/uesrs";
-import Input from "../../Features/input/Input";
 import Image from "../../Features/image/Image";
 // import "./home.scss";
 import { userDecoding } from "../../utils/userDecoding";
 import { Context } from "../../../context/context";
 
 const Cart = () => {
-  
   const { user } = useContext(Context);
   let curetUser;
   if (user) {
     curetUser = userDecoding(user);
   }
+  else{
+    window.location.pathname="/SignIn"
+  }
 
   console.log(curetUser);
   const [books, setBook] = useState(curetUser.books);
- console.log(books);
-//   const [input, setInput] = useState("");
-//   const [searchBookResult, setSearchBookResult] = useState(books);
+  console.log(books);
 
-//   const onChangeInput = (e) => {
-//     setInput(e.target.value);
-//     const searchResult = books.filter((book) => {
-//       let currentValue = e.target.value;
-//       console.log(currentValue);
-//       let rg = new RegExp(`^${currentValue.toUpperCase()}`);
-//       return book.author.toUpperCase().match(rg);
-//     });
-
-//     setSearchBookResult(searchResult);
-//   };
-
-  // useEffect(() => {
-  //   showUserBooks()
-  //     .then((res) => setBook(res.data))
-  //     .catch((e) => {
-  //       console.error(e);
-  //     });
-  //   console.log(curetUser.books);
-  // }, []);
-
-//   let currentBooks;
-//   if (books.length > 0) {
-//     currentBooks = searchBookResult;
-//   } else {
-//     currentBooks = books;
-//   }
-
-//   console.log(currentBooks);
   return (
     <div className="home-root">
       <div
@@ -63,7 +32,6 @@ const Cart = () => {
           Booknode <br /> A place where imagination has no boundaries ...
         </h1>
       </div>
-
       <div className="search-background">
         <div className="home-search">
           <div className="search-icons">
@@ -96,34 +64,22 @@ const Cart = () => {
               <ImCart />
             </a>
           </div>
-{/* 
-          <Input
-            name="search-input"
-            handleChange={onChangeInput}
-            value={input}
-            placeholder={"Search"}
-          /> */}
         </div>
       </div>
-
       <div className="home-images">
         {books?.map((book, index) => {
-          
-            return (
-              <Image
-                key={book._id}
-                nameBook={book.name}
-                image={book.pic}
-                author={book.author}
-                summary={book.summary?.slice(0, 80) + "..."}
-                id={book._id}
-              />
-            );
-          
+          return (
+            <Image
+              key={book._id}
+              nameBook={book.name}
+              image={book.pic}
+              author={book.author}
+              summary={book.summary?.slice(0, 80) + "..."}
+              id={book._id}
+            />
+          );
         })}
       </div>
-
-      {/* </div> */}
     </div>
   );
 };
