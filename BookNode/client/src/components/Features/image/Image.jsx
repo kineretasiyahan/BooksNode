@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ImCart,ImHeart } from "react-icons/im";
 import "./image.scss";
 import { addBookToCart,addBookToWishListUser,deleteBookFromWishListUser } from "../../../service/uesrs";
@@ -12,11 +12,9 @@ const Image = ({ nameBook, author, summary, image, id,button,onClick }) => {
   if (user) {
     curetUser = userDecoding(user);
   }
-  
 
   const add = async () => {
     try {
-      // debugger;
       await addBookToCart(curetUser, id).then((res) => {
         console.log(res);
         dispatch({ type: UPDATELOCALSTOREAGE, payload: res });
@@ -25,6 +23,7 @@ const Image = ({ nameBook, author, summary, image, id,button,onClick }) => {
       console.log(error);
     }
   };
+
     const like = async () => {
     try {
       await addBookToWishListUser(curetUser, id).then((res) => {
@@ -47,22 +46,16 @@ const Image = ({ nameBook, author, summary, image, id,button,onClick }) => {
     }  
   }
   return (
-
     <div className="image-root">
       <img src={image} />
       <h3>{nameBook}</h3>
       <h5>{author}</h5>
       <p>{summary}</p>
-      
-      {/* <h1>{id}</h1> */}
-      <button className="home-button" onClick={() => add()}>
-        {<ImCart />}
-      </button>
-      {/* <button onClick={onclick}>{button}</button> */}
-      {/* <button className="home-button" onClick={() => like()}>
-        {<ImHeart />}
-      </button> */}
-    {/* <button onClick={()=>{deleteBook()}}>D</button> */}
+      {
+        (!curetUser) ?<button onClick={()=>add()}><ImCart/></button>:""
+      }
+    {curetUser?<button onClick={()=>like()}><ImHeart/></button>:""}
+    {curetUser?<button onClick={()=>add()}><ImCart/></button>:""}
     </div>
   );
 };

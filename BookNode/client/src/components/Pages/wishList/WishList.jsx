@@ -3,24 +3,16 @@ import { ImCart, ImHeart, ImUser } from "react-icons/im";
 import Image from "../../Features/image/Image";
 import { userDecoding } from "../../utils/userDecoding";
 import { Context } from "../../../context/context";
-import { addBookToCart,addBookToWishListUser,deleteBookFromWishListUser } from "../../../service/uesrs";
-import { UPDATELOCALSTOREAGE } from "../../../context/constans";
+
+
 const WishList = (id) => {
-  const { user,dispatch } = useContext(Context);
+  const { user, dispatch } = useContext(Context);
   let curetUser;
   if (user) {
     curetUser = userDecoding(user);
   }
-  const like = async () => {
-    try {
-      await addBookToWishListUser(curetUser, id).then((res) => {
-        console.log(res);
-        dispatch({ type: UPDATELOCALSTOREAGE, payload: res });
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
+
   const [books, setBook] = useState(curetUser.wishList);
   return (
     <div className="home-root">
@@ -81,13 +73,8 @@ const WishList = (id) => {
               id={book._id}
             />
           );
-   
         })}
-        {/* <button className="home-button" onClick={() => like()}>
-        {<ImHeart />}
-      </button> */}
       </div>
-    
     </div>
   );
 };

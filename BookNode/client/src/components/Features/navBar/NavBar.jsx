@@ -34,7 +34,6 @@ const NavBar = () => {
           Contact
         </Link>
       </div>
-
       {user ? (
         ""
       ) : (

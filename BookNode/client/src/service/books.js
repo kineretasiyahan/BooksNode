@@ -1,5 +1,3 @@
-// acync funcrion wating to retrn fetch data from DB url
-// handling errors
 export const getAllBooks = async () => {
   try {
    return await fetch("/api/books")
