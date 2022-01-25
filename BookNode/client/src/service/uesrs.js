@@ -87,6 +87,49 @@ export const addBookToCart = async (user, bookId) => {
   }
 };
 
+export const deleteBookFromBooks = async (user,bookId) => {
+  const userId = user._id;
+  const options = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ bookId, userId }),
+  };
+  try {
+    return await fetch(
+      `http://localhost:3002/api/users/deleteBook/${userId}`,
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        if (!response.data) throw response;
+        console.log(response.data);
+        return response.data;
+      })
+      .catch((err) => {
+        throw err;
+      });
+  } catch (error) {
+    return error;
+  }
+};
+// export const deleteBookFromBooks=async()=>{
+//   try{
+// return await fetch(`http://localhost:3002/api/users/deleteBook`)
+
+//   .then((response) => response.json())
+//       .then((response) => {
+//         if (!response.data) throw response;
+//         console.log(response.data);
+//         return response.data;
+//       })
+//       .catch((err) => {
+//         throw err;
+//       });
+//   } catch (error) {
+//     return error;
+//   }
+// }
+
 export const addBookToWishListUser = async (user, bookId) => {
   const options = {
     method: "PUT",
@@ -163,28 +206,30 @@ export const deleteBookFromWishListUser = async (user) => {
 };
 
 
-// http://localhost:3002/api/users/show/61bb6f4839fd1034e6a2ead5
-export const showUserBooks = async () => {
-  // debugger
-  // const options = {
-  //   method: "GET",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(),
-  // };
 
-  try {
-    return await fetch(
-      `http://localhost:3002/api/users/show/61ca0a1e7fb519549b3a82fe`
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        if (!response.data) throw response;
-        return response;
-      })
-      .catch((err) => {
-        throw err;
-      });
-  } catch (error) {
-    return error;
-  }
-};
+
+// // http://localhost:3002/api/users/show/61bb6f4839fd1034e6a2ead5
+// export const showUserBooks = async () => {
+//   // debugger
+//   // const options = {
+//   //   method: "GET",
+//   //   headers: { "Content-Type": "application/json" },
+//   //   body: JSON.stringify(),
+//   // };
+
+//   try {
+//     return await fetch(
+//       `http://localhost:3002/api/users/show/61ca0a1e7fb519549b3a82fe`
+//     )
+//       .then((response) => response.json())
+//       .then((response) => {
+//         if (!response.data) throw response;
+//         return response;
+//       })
+//       .catch((err) => {
+//         throw err;
+//       });
+//   } catch (error) {
+//     return error;
+//   }
+// };

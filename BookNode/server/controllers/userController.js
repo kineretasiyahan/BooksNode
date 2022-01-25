@@ -15,7 +15,7 @@ const getAllUsers = async (req, res) => {
     });
   } catch (err) {
     res.status(301).json({
-      message: "error in method post "+ err.message,
+      message: "error in method post " + err.message,
       success: false,
       error: err.message,
     });
@@ -34,7 +34,7 @@ const getUserById = async (req, res) => {
     });
   } catch (err) {
     res.status(301).json({
-      message: "error in method post "+ err.message,
+      message: "error in method post " + err.message,
       success: false,
       error: err.message,
     });
@@ -57,7 +57,7 @@ const createUser = async (req, res) => {
     });
   } catch (err) {
     res.status(301).json({
-      message: "error in method post "+ err.message,
+      message: "error in method post " + err.message,
       success: false,
       error: err.message,
     });
@@ -80,7 +80,7 @@ const updateUser = async (req, res) => {
     );
   } catch (err) {
     res.status(301).json({
-      message: "error in method post "+ err.message,
+      message: "error in method post " + err.message,
       success: false,
       error: err.message,
     });
@@ -99,7 +99,7 @@ const deleteeUser = async (req, res) => {
     });
   } catch (err) {
     res.status(301).json({
-      message: "error in method post "+ err.message,
+      message: "error in method post " + err.message,
       success: false,
       error: err.message,
     });
@@ -157,7 +157,6 @@ const addBookToWishListUser = async (req, res) => {
 
 const showBooks = async (req, res) => {
   try {
-    
     const user = await userModel.findById(req.params.id);
     formatError(user);
     user.populate("books").then((user) => {
@@ -199,35 +198,29 @@ const showBooksInWishList = async (req, res) => {
     });
   }
 };
-
 const deleteBook = async (req, res) => {
-  try {
-    // const user = await userModel.findById(req.params.id);
-    // console.log(user.books)
-    // const book = await bookModel.findById(req.body._id);
-    // console.log(book._id)
-    // const bookToDelete = user.books.map((item) => {
-    //   console.log(item._id)
-    //   if (book._id !== item._id) {
-    //     console.log("is the same")
-    //     // delete item._id;
-    //   }
-    // })
-    // const bookToDelete2 = user.books.filter((item) => {
-    //   return item._id !== book_id
-    // })
+  try {  
+    console.log(req.body.userId);
+    if (!req.body.userId) throw new Error("id is undefind");
+    if (!req.body.bookId) throw new Error("id is undefind");
+    const book = await bookModel.findById(req.body.bookId);
+    if (!book) throw new Error("the book search failed")   
     const user = await userModel.findByIdAndUpdate(
-      req.params.id,
-      { $pull: { books: req.body._id } },
+      req.body.userId,
+      
+      { $pull: { books: { _id: book._id } } },
       { new: true }
     );
-    if (!user) throw new Error("user not fond");
-    user.save();
+    if (!user) throw new Error("the book search failed")  
+    console.log(user.books.length);
+    await user.save();
+    delete user.password;
     const token = jwt.sign(user.toJSON(), SECRET_KEY, { expiresIn: "1d" });
+   
     res.status(200).json({
       success: true,
       message: "success to update user book!",
-      data: user,
+      data: token,
     });
   } catch (err) {
     res.status(400).json({
@@ -237,6 +230,31 @@ const deleteBook = async (req, res) => {
     });
   }
 };
+
+// const deleteBook = async (req, res) => {
+//   try {
+//     const user = await userModel.findByIdAndUpdate(
+//       req.params.id,
+//       { $pull: { books: req.body._id } },
+//       { new: true }
+//     );
+//     if (!user) throw new Error("user not fond");
+//     user.save();
+//     const token = jwt.sign(user.toJSON(), SECRET_KEY, { expiresIn: "1d" });
+//     res.status(200).json({
+//       success: true,
+//       message: "success to update user book!",
+//       data: token,
+//     });
+//   } catch (err) {
+//     res.status(400).json({
+//       success: false,
+//       message: "failed to update user book!",
+//       data: err.message,
+//     });
+//   }
+// };
+
 module.exports = {
   getAllUsers,
   createUser,

@@ -12,12 +12,9 @@ const Footer = () => {
       <div className="footer-info">
         <h1>
           B{<ImBook />}
-          {<ImBook />}k Node
+          {<ImBook />}KS NODE
         </h1>
-        <div>
-          <span>-------------------------</span>
-          <br />
-          <span>Hod-hasharon</span>
+        <div>            
         </div>
       </div>
       <div className="footer-root-icons">
@@ -36,9 +33,10 @@ const Footer = () => {
           </i>
         </div>
         <div className="footer-contact">
-          <span>Our adress</span>
-          <span>Booknood@gmail.com</span>
+          <span>Booksnode@gmail.com</span>
           <span>09-548-3654</span>
+          <span>Hod-hasharon,27</span>
+          <br/>
         </div>
       </div>
     </div>

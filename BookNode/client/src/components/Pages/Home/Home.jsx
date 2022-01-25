@@ -6,6 +6,8 @@ import Image from "../../Features/image/Image";
 import "./home.scss";
 import { userDecoding } from "../../utils/userDecoding";
 import { Context } from "../../../context/context";
+import { Link } from "react-router-dom";
+
 
 const Home = () => {
   const { user } = useContext(Context);
@@ -13,8 +15,8 @@ const Home = () => {
   if (user) {
     curetUser = userDecoding(user);
   }
-
   console.log(curetUser);
+  
   const [books, setBook] = useState([]);
   const [input, setInput] = useState("");
   const [searchBookResult, setSearchBookResult] = useState(books);
@@ -27,7 +29,6 @@ const Home = () => {
       let rg = new RegExp(`^${currentValue.toUpperCase()}`);
       return book.author.toUpperCase().match(rg);
     });
-
     setSearchBookResult(searchResult);
   };
 
@@ -46,8 +47,8 @@ const Home = () => {
   } else {
     currentBooks = books;
   }
-
   console.log(currentBooks);
+
   return (
     <div className="home-root">
       <div
@@ -58,22 +59,21 @@ const Home = () => {
       >
         <h1>
           {" "}
-          Booknode <br /> A place where imagination has no boundaries ...
+          Booksnode <br /> A place where imagination has no boundaries ...
         </h1>
       </div>
-
       <div className="search-background">
         <div className="home-search">
           <div className="search-icons">
-            <a href="http://localhost:3000/">
+            <Link to="/">
               {curetUser ? (
                 <p className="userInfo">{curetUser.firstName}</p>
               ) : (
                 ""
               )}
               <ImUser />
-            </a>
-            <a href="http://localhost:3000/WishList">
+            </Link>
+            <Link to="/WishList">
               {curetUser ? (
                 <p className="userInfo">
                   {curetUser.wishList ? curetUser.wishList.length : 0}
@@ -82,18 +82,17 @@ const Home = () => {
                 ""
               )}
               <ImHeart />
-            </a>
-            <a href="http://localhost:3000/Cart">
+            </Link>
+            <Link to="/Cart">
               {curetUser ? (
                 <p className="userInfo">
                   {curetUser.books ? curetUser.books.length : 0}
                 </p>
               ) : (
                 ""
-              )
-              }
+              )}
               <ImCart />
-            </a>
+            </Link>
             <Input
               name="search-input"
               handleChange={onChangeInput}
@@ -103,20 +102,20 @@ const Home = () => {
           </div>
         </div>
         <div className="home-images">
-          {currentBooks?.map((book, index) => {
-            if (index < 8) {
-              return (
-                <Image
-                  key={book._id}
-                  nameBook={book.name}
-                  image={book.pic}
-                  author={book.author}
-                  summary={book.summary?.slice(0, 80) + "..."}
-                  id={book._id}
-                />
-              );
-            }
-          })}
+          {currentBooks
+            .map((book, index) => {
+              if (index < 8) {
+                return (
+                  <Image
+                    key={book._id}
+                    nameBook={book.name}
+                    image={book.pic}
+                    author={book.author}
+                    id={book._id}
+                  />
+                );
+              }
+            })}
         </div>
       </div>
     </div>

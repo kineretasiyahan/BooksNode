@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "../Pages/home/Home";
 import Contact from "../Pages/contactUs/Contact";
@@ -9,9 +9,10 @@ import SignUp from "../Pages/signUp/SignUp";
 import Footer from "../Features/footer/Footer";
 import NavBar from "../Features/navBar/NavBar";
 import Cart from "../Pages/cart/Cart";
-import WishList from "../Pages/wishList/WishList"
+import WishList from "../Pages/wishList/WishList";
 import { ContextProvider, Context } from "../../context/context";
 import { userDecoding } from "../utils/userDecoding";
+import OneBook from "../Pages/oneBook/OneBook";
 
 const AppRouter = () => {
   let { user } = useContext(Context);
@@ -30,11 +31,14 @@ const AppRouter = () => {
           <Route path="/Books">
             <Books />
           </Route>
+          <Route path="/OneBook/:id">
+            <OneBook />
+          </Route>
           <Route path="/Cart">
             <Cart />
           </Route>
           <Route path="/WishList">
-            <WishList/>
+            <WishList />
           </Route>
           <Route path="/About">
             <About />

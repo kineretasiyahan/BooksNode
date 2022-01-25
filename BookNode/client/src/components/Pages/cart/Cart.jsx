@@ -4,20 +4,36 @@ import Image from "../../Features/image/Image";
 // import "./home.scss";
 import { userDecoding } from "../../utils/userDecoding";
 import { Context } from "../../../context/context";
+import { Link } from "react-router-dom";
+// import { deleteBookFromBooks } from "../../../service/uesrs";
+import { UPDATELOCALSTOREAGE } from "../../../context/constans";
 
 const Cart = () => {
-  const { user } = useContext(Context);
+  // let curetUser;
+  // const { user } = useContext(Context);
+  // !user
+  //   ? (window.location.pathname = "/SignIn")
+  //   : (curetUser = userDecoding(user));
   let curetUser;
-  if (user) {
-    curetUser = userDecoding(user);
-  }
-  else{
-    window.location.pathname="/SignIn"
-  }
-
+  const { user, dispatch } = useContext(Context);
+  !user
+    ? (window.location.pathname = "/SignIn")
+    : (curetUser = userDecoding(user));
   console.log(curetUser);
   const [books, setBook] = useState(curetUser.books);
   console.log(books);
+
+  // const deleteBook = async (id) => {
+  //   try {
+  //     await deleteBookFromBooks(curetUser, id).then((res) => {
+  //       console.log(res);
+  //       dispatch({ type: UPDATELOCALSTOREAGE, payload: res });
+  //     });
+  //     console.log(UPDATELOCALSTOREAGE);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div className="home-root">
@@ -29,31 +45,31 @@ const Cart = () => {
       >
         <h1>
           {" "}
-          Booknode <br /> A place where imagination has no boundaries ...
+          Booksnode <br /> A place where imagination has no boundaries ...
         </h1>
       </div>
       <div className="search-background">
         <div className="home-search">
           <div className="search-icons">
-            <a href="http://localhost:3000/">
+            <Link to="/">
               {curetUser ? (
                 <p className="userInfo">{curetUser.firstName}</p>
               ) : (
                 ""
               )}
               <ImUser />
-            </a>
-            <a href="http://localhost:3000/Books">
+            </Link>
+            <Link to="/WishList">
               {curetUser ? (
                 <p className="userInfo">
-                  {curetUser.books ? curetUser.wishList.length : 0}
+                  {curetUser.wishList ? curetUser.wishList.length : 0}
                 </p>
               ) : (
                 ""
               )}
               <ImHeart />
-            </a>
-            <a href="http://localhost:3000/Books">
+            </Link>
+            <Link to="/Cart">
               {curetUser ? (
                 <p className="userInfo">
                   {curetUser.books ? curetUser.books.length : 0}
@@ -62,7 +78,7 @@ const Cart = () => {
                 ""
               )}
               <ImCart />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -70,12 +86,12 @@ const Cart = () => {
         {books?.map((book, index) => {
           return (
             <Image
-              key={book._id}
-              nameBook={book.name}
-              image={book.pic}
-              author={book.author}
-              summary={book.summary?.slice(0, 80) + "..."}
-              id={book._id}
+              key={book?._id}
+              nameBook={book?.name}
+              image={book?.pic}
+              author={book?.author}
+              id={book?._id}
+              // onClick={deleteBook(book._id)}
             />
           );
         })}
