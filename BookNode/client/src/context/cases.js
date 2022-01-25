@@ -1,4 +1,4 @@
-import { LOGOUT, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_START,UPDATELOCALSTOREAGE } from "./constans";
+import { LOGOUT, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_START,UPDATELOCALSTOREAGE, UPDATEUSER } from "./constans";
 
 const Reducer = (state, action) => {
   switch (action.type) {
@@ -32,6 +32,12 @@ const Reducer = (state, action) => {
         isFetching: false,
         error: false,
       }
+      case UPDATEUSER:
+        return{
+          user: null,
+          isFetching: false,
+          error: false,
+        }
 
     default:
       return state;

@@ -1,8 +1,6 @@
 import { createContext, useEffect, useReducer } from "react";
 import Reducer from "./cases";
 
-//local= shuanesh, books:[1,2];
-// shuanesh, books[1,2,3,4,5]
 
 const INITIAL_STATE = {
   user: JSON.parse(localStorage.getItem("userToken") || null) , 

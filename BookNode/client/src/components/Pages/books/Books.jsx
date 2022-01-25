@@ -6,24 +6,19 @@ import { Context } from "../../../context/context";
 import { ImCart, ImHeart, ImUser } from "react-icons/im";
 import "./books.scss";
 import { userDecoding } from "../../utils/userDecoding";
-
+import { Link } from "react-router-dom";
 
 const Books = () => {
-  const { user, dispatch } = useContext(Context);
   let curetUser;
-  if (user) {
-    curetUser = userDecoding(user);
-  }
-
-  console.log(curetUser);
-  if (!curetUser) {
-    window.location.pathname = "/SignIn";
-  }
+  const { user, dispatch } = useContext(Context);
+  !user
+    ? (window.location.pathname = "/SignIn")
+    : (curetUser = userDecoding(user));
 
   const [books, setBook] = useState([]);
   const [input, setInput] = useState("");
   const [searchBookResult, setSearchBookResult] = useState(books);
-  
+
   const onChangeInput = (e) => {
     setInput(e.target.value);
     const searchResult = books.filter((book) => {
@@ -32,7 +27,6 @@ const Books = () => {
       let rg = new RegExp(`^${currentValue.toUpperCase()}`);
       return book.author.toUpperCase().match(rg);
     });
-
     setSearchBookResult(searchResult);
   };
 
@@ -55,31 +49,16 @@ const Books = () => {
     <div className="books-root">
       <div className="search-background">
         <div className="home-search">
-          <div>
-            {books ? (
-              <a href="http://localhost:3000/SignIn">
-                <button onClick={() => dispatch({ type: "LOGOUT" })}>
-                  Log out
-                </button>
-              </a>
-            ) : (
-              <a href="http://localhost:3000/">
-                <button onClick={() => dispatch({ type: "LOGIN_SUCCESS" })}>
-                  Log in
-                </button>
-              </a>
-            )}
-          </div>
           <div className="search-icons">
-            <a href="http://localhost:3000/">
+            <Link to="/">
               {curetUser ? (
                 <p className="userInfo">{curetUser.firstName}</p>
               ) : (
                 ""
               )}
               <ImUser />
-            </a>
-            <a href="http://localhost:3000/WishList">
+            </Link>
+            <Link to="/WishList">
               {curetUser ? (
                 <p className="userInfo">
                   {curetUser.wishList ? curetUser.wishList.length : 0}
@@ -88,8 +67,8 @@ const Books = () => {
                 ""
               )}
               <ImHeart />
-            </a>
-            <a href="http://localhost:3000/Cart">
+            </Link>
+            <Link to="/Cart">
               {curetUser ? (
                 <p className="userInfo">
                   {curetUser.books ? curetUser.books.length : 0}
@@ -98,7 +77,7 @@ const Books = () => {
                 ""
               )}
               <ImCart />
-            </a>
+            </Link>
           </div>
           <Input
             name="search-input"
@@ -116,9 +95,10 @@ const Books = () => {
               nameBook={book.name}
               image={book.pic}
               author={book.author}
-              summary={book.summary?.slice(0, 80) + "..."}
               id={book._id}
-            />)})}
+            />
+          );
+        })}
       </div>
     </div>
   );

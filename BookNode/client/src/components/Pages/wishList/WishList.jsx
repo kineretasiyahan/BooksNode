@@ -3,15 +3,20 @@ import { ImCart, ImHeart, ImUser } from "react-icons/im";
 import Image from "../../Features/image/Image";
 import { userDecoding } from "../../utils/userDecoding";
 import { Context } from "../../../context/context";
-
+import {Link} from "react-router-dom"
 
 const WishList = (id) => {
-  const { user, dispatch } = useContext(Context);
   let curetUser;
-  if (user) {
-    curetUser = userDecoding(user);
-  }
-  
+  const { user } = useContext(Context);
+  (!user?window.location.pathname = "/SignIn":curetUser = userDecoding(user))
+  // const { user, dispatch } = useContext(Context);
+  // let curetUser;
+  // if (user) {
+  //   curetUser = userDecoding(user);
+  // }
+  // else{
+  //   window.location.pathname="/SignIn"
+  // }
 
   const [books, setBook] = useState(curetUser.wishList);
   return (
@@ -30,15 +35,15 @@ const WishList = (id) => {
       <div className="search-background">
         <div className="home-search">
           <div className="search-icons">
-            <a href="http://localhost:3000/">
+            <Link to="/">
               {curetUser ? (
                 <p className="userInfo">{curetUser.firstName}</p>
               ) : (
                 ""
               )}
               <ImUser />
-            </a>
-            <a href="http://localhost:3000/WishList">
+            </Link>
+            <Link to="/WishList">
               {curetUser ? (
                 <p className="userInfo">
                   {curetUser.wishList ? curetUser.wishList.length : 0}
@@ -47,8 +52,8 @@ const WishList = (id) => {
                 ""
               )}
               <ImHeart />
-            </a>
-            <a href="http://localhost:3000/Cart">
+            </Link>
+            <Link to="/Cart">
               {curetUser ? (
                 <p className="userInfo">
                   {curetUser.books ? curetUser.books.length : 0}
@@ -57,7 +62,7 @@ const WishList = (id) => {
                 ""
               )}
               <ImCart />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -69,7 +74,6 @@ const WishList = (id) => {
               nameBook={book.name}
               image={book.pic}
               author={book.author}
-              summary={book.summary?.slice(0, 80) + "..."}
               id={book._id}
             />
           );

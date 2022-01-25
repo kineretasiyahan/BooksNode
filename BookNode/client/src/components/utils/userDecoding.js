@@ -5,6 +5,6 @@ export const userDecoding = (userDecodingInfo) =>{
 
       const decoded = jwt_decode(userDecodingInfo);
       checkToken(decoded);
-      console.log(decoded);
+      // console.log(decoded);
       return decoded
 }
