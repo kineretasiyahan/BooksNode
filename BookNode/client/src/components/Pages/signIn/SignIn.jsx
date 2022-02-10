@@ -14,10 +14,9 @@ const SignInForm = () => {
     email: "",
     password: "",
   });
-
   const [userIn, setUserIn] = useState({});
   const [errorLoginHa, setErrorLoginHa] = useState({});
-  const {dispatch } = useContext(Context);
+  const { dispatch } = useContext(Context);
 
   const handelInput = (e) => {
     setDetails({ ...details, [e.target.name]: e.target.value });
@@ -28,20 +27,20 @@ const SignInForm = () => {
     dispatch({ type: LOGIN_START });
     try {
       await userLogin(details).then((res) => {
+        setUserIn(res);
         console.log(res);
-        res.success ? setUserIn(res) : setErrorLoginHa(res);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+        res.data !== null ? (
+          (window.location.pathname = "/")
+        ) : (
+          <p>{res.message}</p>
+        );
       });
     } catch (e) {
       dispatch({ type: LOGIN_FAILURE });
       console.log(e);
     }
-    userIn
-      ? (window.location.pathname = "/")
-      : (window.location.pathname = "/SignIn");
   };
-
-  console.log(errorLoginHa);
   return (
     <div className="sign-in-root">
       <form className="form-root-sign-in" onSubmit={onSubmit}>
@@ -55,7 +54,6 @@ const SignInForm = () => {
           value={details.email}
           onChange={handelInput}
         />
-
         <input
           className="input-form"
           type="password"
@@ -65,10 +63,16 @@ const SignInForm = () => {
           value={details.password}
           onChange={handelInput}
         />
-        <p>{errorLoginHa?.message}</p>
-        <button className="button-form" type="submit">
-          Login
-        </button>
+        <p>{userIn?.message}</p>
+        {userIn.data !== null ? (
+          <button className="button-form" type="submit">
+            Login
+          </button>
+        ) : (
+          <button className="button-form" type="submit">
+           try again
+          </button>
+        )}
       </form>
       <Link to="/SignUp" className="link">
         I'm not registered yet
