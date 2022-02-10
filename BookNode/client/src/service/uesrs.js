@@ -57,9 +57,11 @@ export const userLogin = async (user) => {
       })
       .catch((err) => {
         throw err;
+        // console.log(err);
       });
   } catch (error) {
     return error;
+    // console.log(error);
   }
 };
 

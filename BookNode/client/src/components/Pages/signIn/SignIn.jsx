@@ -32,8 +32,9 @@ const SignInForm = () => {
         res.success ? setUserIn(res) : setErrorLoginHa(res);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       });
-    } catch (e) {
-      dispatch({ type: LOGIN_FAILURE });
+    } catch (error) {
+      
+      dispatch({ type: LOGIN_FAILURE,payload:error });
       console.log(e);
     }
     userIn
@@ -54,6 +55,7 @@ const SignInForm = () => {
           placeholder="Enter email"
           value={details.email}
           onChange={handelInput}
+          required="required"
         />
 
         <input
@@ -64,15 +66,17 @@ const SignInForm = () => {
           placeholder="Password"
           value={details.password}
           onChange={handelInput}
+          required="required"
+
         />
+         <Link to="/SignUp" className="link">
+         Do not have an account      </Link>
         <p>{errorLoginHa?.message}</p>
         <button className="button-form" type="submit">
           Login
         </button>
       </form>
-      <Link to="/SignUp" className="link">
-        I'm not registered yet
-      </Link>
+     
     </div>
   );
 };

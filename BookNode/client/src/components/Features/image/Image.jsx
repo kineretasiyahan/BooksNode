@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { ImCart, ImHeart } from "react-icons/im";
+import {MdOutlineRemoveShoppingCart,MdAddShoppingCart} from 'react-icons/md'
 import "./image.scss";
+import {BsHandThumbsUp} from "react-icons/bs"
 import {
   addBookToCart,
   addBookToWishListUser,
@@ -23,9 +24,9 @@ const Image = ({ nameBook, author, summary, image, id, button, onClick,price }) 
     try {
       await addBookToCart(curetUser, id).then((res) => {
         console.log(res);
-        // if(res.error){
-        //   dispatch({ type: UPDATELOCALSTOREAGE, payload: res });
-        // }
+        if(res.error){
+          dispatch({ type: UPDATELOCALSTOREAGE, payload: res });
+        }
         dispatch({ type: UPDATELOCALSTOREAGE, payload: res });
       });
     } catch (error) {
@@ -47,7 +48,7 @@ const Image = ({ nameBook, author, summary, image, id, button, onClick,price }) 
   const deleteBook = async () => {
     try {
       await deleteBookFromBooks(curetUser,id).then((res) => {
-        console.log(curetUser);
+        console.log(id);
         dispatch({type: UPDATELOCALSTOREAGE,payload: res})
       });
      
@@ -63,39 +64,41 @@ const Image = ({ nameBook, author, summary, image, id, button, onClick,price }) 
       <h5>{author}</h5>
       <Link id="one" to={`/OneBook/${id}`}>Read mo...</Link>
       <p>{summary}</p>
-      {!curetUser ? (
+      {/* {!curetUser ? (
         <button onClick={() => add()}>
           <ImCart />
         </button>
       ) : (
         ""
-      )}
+      )} */}
+      <div className="buttonsDiv">
       {curetUser ? (
-        <button onClick={() => like()}>
-          <ImHeart />
+        <button className="buttons" onClick={() => like()}>
+          <BsHandThumbsUp />
         </button>
       ) : (
         ""
       )}
       {curetUser ? (
-        <button onClick={() => add()}>
-          <ImCart />
+        <button className="buttons" onClick={() => add()}>
+          <MdAddShoppingCart />
         </button>
       ) : (
         ""
       )}
        
-      <p>{price}</p> 
-     
+
       {curetUser ? (
-        <button id="del"onClick={() => deleteBook()}>
-          <ImCart />
-          del
+        <button className="buttons" id="del"onClick={() => deleteBook()}>
+          <MdOutlineRemoveShoppingCart />
         </button>
       ) : (
         ""
       )}
+       <p>{price}</p> 
     </div>
+    </div>
+    
   );
 };
 
