@@ -62,6 +62,8 @@ const SignUp = () => {
           value={userSignUp.password}
           onChange={handelInput}
         />
+                <Link to="/SignIn" className="link">I already have an account</Link>
+
         <button
           className="button-form"
           type="submit"
@@ -71,8 +73,9 @@ const SignUp = () => {
         >
           Register
         </button>
+        
       </form>
-     <Link to="/SignIn" className="link">I'm already registered</Link>
+      
       {/* </div> */}
     </div>
   

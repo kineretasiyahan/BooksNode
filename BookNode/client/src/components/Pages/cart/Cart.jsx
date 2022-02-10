@@ -1,7 +1,6 @@
-import { useState, useEffect, useContext } from "react";
+import { useState,  useContext } from "react";
 import { ImCart, ImHeart, ImUser } from "react-icons/im";
 import Image from "../../Features/image/Image";
-// import "./home.scss";
 import { userDecoding } from "../../utils/userDecoding";
 import { Context } from "../../../context/context";
 import { Link } from "react-router-dom";
@@ -9,11 +8,6 @@ import { Link } from "react-router-dom";
 import { UPDATELOCALSTOREAGE } from "../../../context/constans";
 
 const Cart = () => {
-  // let curetUser;
-  // const { user } = useContext(Context);
-  // !user
-  //   ? (window.location.pathname = "/SignIn")
-  //   : (curetUser = userDecoding(user));
   let curetUser;
   const { user, dispatch } = useContext(Context);
   !user
@@ -91,7 +85,6 @@ const Cart = () => {
               image={book?.pic}
               author={book?.author}
               id={book?._id}
-              // onClick={deleteBook(book._id)}
             />
           );
         })}

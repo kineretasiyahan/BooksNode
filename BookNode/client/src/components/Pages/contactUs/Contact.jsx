@@ -38,12 +38,12 @@ const Contact = () => {
       </div>
       {!isSend ? (
         <form className="contact-form" onSubmit={ThanksHandler}>
-          <div>
-            <h2>Contact as</h2>
-            <h5>We would love to hear from you !</h5>
-          </div>
+          {/* <div> */}
+            <h2>Contact us.</h2>
+            <h4>We would like to hear from you !</h4>
+          {/* </div> */}
           <div className="contact-label">
-            <label htmlFor="">first name:</label>
+            <label htmlFor="">First name:</label>
             <input
               type="text"
               name="name"
@@ -51,13 +51,13 @@ const Contact = () => {
               required
               onChange={ValueChang}
             />
-            <label htmlFor="">last name:</label>
+            <label htmlFor="">Last name:</label>
             <input type="text" name="last" required onChange={ValueChang} />
-            <label htmlFor="">phone number:</label>
+            <label htmlFor="">Phone number:</label>
             <input type="phone" name="phone" required onChange={ValueChang} />
-            <label htmlFor="">email:</label>
+            <label htmlFor="">Email:</label>
             <input type="email" name="email" required onChange={ValueChang} />
-            <textarea ref={textShow}></textarea>
+            <textarea placeholder="Massage" ref={textShow}></textarea>
             <button type="submit">send</button>
             <span>{textSpan}</span>
           </div>

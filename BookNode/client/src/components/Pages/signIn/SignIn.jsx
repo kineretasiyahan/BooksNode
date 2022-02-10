@@ -36,8 +36,9 @@ const SignInForm = () => {
           <p>{res.message}</p>
         );
       });
-    } catch (e) {
-      dispatch({ type: LOGIN_FAILURE });
+    } catch (error) {
+      
+      dispatch({ type: LOGIN_FAILURE,payload:error });
       console.log(e);
     }
   };
@@ -53,6 +54,7 @@ const SignInForm = () => {
           placeholder="Enter email"
           value={details.email}
           onChange={handelInput}
+          required="required"
         />
         <input
           className="input-form"
@@ -62,6 +64,8 @@ const SignInForm = () => {
           placeholder="Password"
           value={details.password}
           onChange={handelInput}
+          required="required"
+
         />
         <p>{userIn?.message}</p>
         {userIn.data !== null ? (
@@ -74,9 +78,7 @@ const SignInForm = () => {
           </button>
         )}
       </form>
-      <Link to="/SignUp" className="link">
-        I'm not registered yet
-      </Link>
+     
     </div>
   );
 };
