@@ -4,7 +4,7 @@ const Reducer = (state, action) => {
   switch (action.type) {
     case LOGIN_FAILURE:
       return {
-        user: null,
+        user:null,
         isFetching: false,
         error: true,
       };

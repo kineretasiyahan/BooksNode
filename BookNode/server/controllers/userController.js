@@ -207,7 +207,6 @@ const deleteBook = async (req, res) => {
     if (!book) throw new Error("the book search failed")   
     const user = await userModel.findByIdAndUpdate(
       req.body.userId,
-      
       { $pull: { books: { _id: book._id } } },
       { new: true }
     );

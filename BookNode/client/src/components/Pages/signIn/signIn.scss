@@ -8,9 +8,15 @@
   //   max-height: 100%;
   //   background-color: yellowgreen;
 
-  > .link {
+  // > .link {
+  //   text-decoration: none;
+  //   color: $mainColor;
+  // }
+  .link{
+    color:$mainColor;
+    margin: 5%;
+    padding: 12px;
     text-decoration: none;
-    color: $mainColor;
   }
 }
 

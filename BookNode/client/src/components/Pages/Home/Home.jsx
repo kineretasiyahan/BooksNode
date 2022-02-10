@@ -11,11 +11,13 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const { user } = useContext(Context);
+
   let curetUser;
   if (user) {
     curetUser = userDecoding(user);
   }
   console.log(curetUser);
+  
   
   const [books, setBook] = useState([]);
   const [input, setInput] = useState("");
@@ -54,7 +56,7 @@ const Home = () => {
       <div
         className="home-intro animate__animated animate__zoomIn"
         style={{
-          backgroundImage: `url(https://images.pexels.com/photos/1165982/pexels-photo-1165982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=${600}&w=${700})`,
+          backgroundImage: `url(https://images.pexels.com/photos/1165982/pexels-photo-1165982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=${800}&w=${800})`,
         }}
       >
         <h1>
@@ -72,6 +74,7 @@ const Home = () => {
                 ""
               )}
               <ImUser />
+              
             </Link>
             <Link to="/WishList">
               {curetUser ? (
@@ -94,6 +97,7 @@ const Home = () => {
               <ImCart />
             </Link>
             <Input
+            className="search-input"
               name="search-input"
               handleChange={onChangeInput}
               value={input}

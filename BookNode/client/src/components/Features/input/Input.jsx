@@ -1,15 +1,15 @@
 const Input = (props) => {
-  const { type, name, value, placeholder, handleChange } = props;
+  const { type, name, value, placeholder, handleChange,required } = props;
 
   return (
     <input
-      className="input"
+      className="search-input"
       type={type}
       name={name}
       value={value}
       placeholder={placeholder}
       onChange={handleChange}
-      required
+      required={required}
     />
   );
 };

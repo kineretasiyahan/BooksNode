@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   user: JSON.parse(localStorage.getItem("userToken") || null) , 
   isFetching: false,
   error: false,
+
 };
 export const Context = createContext(INITIAL_STATE);
 

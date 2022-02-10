@@ -44,7 +44,7 @@
 .home-search {
   display: flex;
   align-items: center;
-  // justify-content: space-around;
+  justify-content: space-between;
   height: 100%;
   width: 100%;
   padding: 10px;
@@ -55,15 +55,15 @@
 
   margin-top: 20px;
 
-  > input {
+  .search-input {
     height: 28px;
-    width: 45%;
+    // width: 45%;
     border: solid 1px $mainColor;
     border-radius: 122px 122px 122px 122px;
     color: black;
     transition: all 0.5s ease;
-    
-
+    margin-left: 8px;
+    padding: 6px;
     &:focus {
       background-color: $hoverMainColor;
       color: white;
