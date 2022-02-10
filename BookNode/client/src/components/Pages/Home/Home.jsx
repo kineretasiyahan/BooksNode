@@ -36,7 +36,6 @@ const Home = () => {
 
   useEffect(() => {
     getAllBooks()
-      // .then((res) => console.log((res.data)))
       .then((res) => setBook(res.data))
       .catch((e) => {
         console.error(e);
