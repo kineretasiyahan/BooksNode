@@ -1,8 +1,8 @@
 const { userModel } = require('../../models/userModel');
 const bycrypt = require("bcryptjs");
 const nodemailer = require('nodemailer')
-const EMAIL = process.env.EMAIL || 'booksNode7@gmail.com';
-const PASSWORD = process.env.PASSWORD || "Book1234";
+const EMAIL = process.env.EMAIL;
+const PASSWORD = process.env.PASSWORD;
 const register = async (req, res) => {
     try {
         await userModel.findOne({ email: req.body.email }).then((user) => {
@@ -52,7 +52,6 @@ const register = async (req, res) => {
                         return res.json({ message: `email sent` });
                     }
                 });
-
             }
         });
     } catch (err) {

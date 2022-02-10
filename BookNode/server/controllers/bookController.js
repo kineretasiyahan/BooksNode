@@ -3,7 +3,6 @@ const { formatError } = require("../errors function/errorsFunctions");
 
 const getBooks = async (req, res) => {
   try {
-    // console.log(req);
     const books = await bookModel.find({});
     formatError(books);
     res.status(200).json({

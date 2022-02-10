@@ -1,8 +1,8 @@
 const { userModel, userValidate } = require("../models/userModel");
 const { bookModel } = require("../models/bookModel");
-const { formatError } = require("../errors function/errorsFunctions");
+const { formatError , isEmpty} = require("../errors function/errorsFunctions");
 const jwt = require("jsonwebtoken");
-const SECRET_KEY = process.env.SECRET_KEY || "booksNode2021";
+const SECRET_KEY = process.env.SECRET_KEY;
 
 const getAllUsers = async (req, res) => {
   try {
@@ -104,8 +104,7 @@ const deleteeUser = async (req, res) => {
       error: err.message,
     });
   }
-};
-
+}
 const addBookToUser = async (req, res) => {
   try {
     const bookId = await bookModel.findById(req.body._id);
@@ -201,10 +200,10 @@ const showBooksInWishList = async (req, res) => {
 const deleteBook = async (req, res) => {
   try {  
     console.log(req.body.userId);
-    if (!req.body.userId) throw new Error("id is undefind");
-    if (!req.body.bookId) throw new Error("id is undefind");
+    isEmpty(req.body.userId);
+    isEmpty(req.body.bookId);
     const book = await bookModel.findById(req.body.bookId);
-    if (!book) throw new Error("the book search failed")   
+    formatError(book) 
     const user = await userModel.findByIdAndUpdate(
       req.body.userId,
       { $pull: { books: { _id: book._id } } },
@@ -229,30 +228,6 @@ const deleteBook = async (req, res) => {
     });
   }
 };
-
-// const deleteBook = async (req, res) => {
-//   try {
-//     const user = await userModel.findByIdAndUpdate(
-//       req.params.id,
-//       { $pull: { books: req.body._id } },
-//       { new: true }
-//     );
-//     if (!user) throw new Error("user not fond");
-//     user.save();
-//     const token = jwt.sign(user.toJSON(), SECRET_KEY, { expiresIn: "1d" });
-//     res.status(200).json({
-//       success: true,
-//       message: "success to update user book!",
-//       data: token,
-//     });
-//   } catch (err) {
-//     res.status(400).json({
-//       success: false,
-//       message: "failed to update user book!",
-//       data: err.message,
-//     });
-//   }
-// };
 
 module.exports = {
   getAllUsers,

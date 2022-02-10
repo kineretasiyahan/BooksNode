@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://kineret:Aa123456!@cluster0.udluj.mongodb.net/usersDataBase?retryWrites=true&w=majority";
+const MONGODB_URL = process.env.MONGODB_URL
 
 const mongooseConnect = async () => {
     await mongoose.connect(MONGODB_URL)
@@ -12,5 +12,5 @@ mongooseConnect()
         console.log("error in mongoDB atlas connected")
     })
 
-const mongooseConnection= mongoose.connection
+const mongooseConnection = mongoose.connection
 module.exports = mongooseConnection;
