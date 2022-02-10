@@ -15,9 +15,9 @@ db.on("error", () => {
   console.log("error in function on db");
 });
 
-// app.get('/', (req, res) => {
-//     res.send("sucsses");
-// })
+app.get('/', (req, res) => {
+    res.send("sucsses");
+})
 app.use("/api/users", userRouter);
 app.use("/api/books", bookRouter);
 

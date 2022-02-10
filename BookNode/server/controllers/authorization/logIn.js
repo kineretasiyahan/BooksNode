@@ -1,10 +1,10 @@
 const { userModel } = require('../../models/userModel')
 const jwt = require("jsonwebtoken");
 const bycrypt = require("bcryptjs");
-const SECRET_KEY = process.env.SECRET_KEY || "booksNode2021";
+const SECRET_KEY = process.env.SECRET_KEY;
 
 const logIn = async (req, res) => {
-    // בודקים שהסיסמה והאיימל שקיבלנו מהקליינט הכן קיימים
+    // בודקים שהסיסמה והאיימל שקיבלנו מהקליינט כן קיימים
     const { email, password } = req.body.user;
     if (!email || !password) {
         return res.status(400).json({
@@ -13,7 +13,7 @@ const logIn = async (req, res) => {
             error: "email and password is required ",
         });
     }
-    // מתחילים ניסוי של מצאית משתמש על פי הנתונים מהקליינט ומגבים בהתאם
+    // מתחילים ניסוי של מציאת משתמש על פי הנתונים מהקליינט ומגבים בהתאם
     try {
         // מנסים למצוא משתמש לפי איימל
         const user = await userModel.findOne({ email });
@@ -39,6 +39,7 @@ const logIn = async (req, res) => {
                 success: false,
                 message: "wrong password",
                 errors: { password: "wrong password" },
+                data:null
             });
         }
         /*
@@ -51,7 +52,7 @@ const logIn = async (req, res) => {
         /* 
             יוצרים תוקן להחזיר לקליינט במידה והכל עבר בהצלחה 
             זה ישמש אותנו בהמשך כדי לאמת נתונים של משתמש לפני שנציג לנו מידע מסוים 
-            זה יעזור לנו לוודא שהכן הבקשות שנשלחות מהקליינט הכן אמינות
+            זה יעזור לנו לוודא שאכן הבקשות שנשלחות מהקליינט אכן אמינות
         */
         const token = jwt.sign(user.toJSON(), SECRET_KEY, { expiresIn: "1d" });
         res.status(200).json({
