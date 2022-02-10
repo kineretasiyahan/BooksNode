@@ -74,7 +74,7 @@ const SignInForm = () => {
           </button>
         ) : (
           <button className="button-form" type="submit">
-           try again
+           Try again
           </button>
         )}
       </form>
