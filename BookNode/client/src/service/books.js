@@ -1,6 +1,6 @@
 export const getAllBooks = async () => {
   try {
-   return await fetch("/api/books")
+   return await fetch("http://localhost:3002/api/books")
       .then((res) => res.json())
       .then((res) => {
         if (!res.data) throw res;
@@ -25,3 +25,4 @@ export const bookById = async ({id}) => {
     return error;
   }
 };
+
