@@ -1,11 +1,15 @@
+const API =
+  process.env.NODE_ENV == "production"
+    ? "https://books-node-app.herokuapp.com"
+    : "http://localhost:3002";
+
 export const getAllUsers = async () => {
-  return await fetch("/api/users")
+  return await fetch(`{${API}/api/users`)
     .then((res) => res.json())
     .catch((e) => {
       console.log("ERROR!! " + e);
     });
 };
-
 export const userRegistration = async (user) => {
   const options = {
     method: "POST",
@@ -14,7 +18,7 @@ export const userRegistration = async (user) => {
   };
   console.log(options);
 
-  return await fetch("http://localhost:3002/api/users/register", options)
+  return await fetch(`${API}/api/users/register`, options)
     .then((res) => res.json())
     .then((res) => res.data)
     .catch((err) => console.log(err));
@@ -28,7 +32,7 @@ export const userLogOut = async () => {
   };
 
   try {
-    return await fetch("http://localhost:3002/api/users/", options)
+    return await fetch(`${API}/api/users/`, options)
       .then((response) => response.json())
       .then((response) => {
         if (!response.data) throw response;
@@ -49,7 +53,7 @@ export const userLogin = async (user) => {
     body: JSON.stringify({ user }),
   };
   try {
-    return await fetch("http://localhost:3002/api/users/login", options)
+    return await fetch(`${API}/api/users/login`, options)
       .then((response) => response.json())
       .then((response) => {
         if (!response.data) throw response;
@@ -73,7 +77,7 @@ export const addBookToCart = async (user, bookId) => {
   };
   try {
     return await fetch(
-      `http://localhost:3002/api/users/addBook/${user._id}`,
+      `${API}/api/users/addBook/${user._id}`,
       options)
       .then((response) => response.json())
       .then((response) => {
@@ -98,7 +102,7 @@ export const deleteBookFromBooks = async (user,bookId) => {
   };
   try {
     return await fetch(
-      `http://localhost:3002/api/users/deleteBook/${userId}`,
+      `${API}/api/users/deleteBook/${userId}`,
       options
     )
       .then((response) => response.json())
@@ -140,7 +144,7 @@ export const addBookToWishListUser = async (user, bookId) => {
   };
   try {
     return await fetch(
-      `http://localhost:3002/api/users/addWishList/${user._id}`,
+      `${API}/api/users/addWishList/${user._id}`,
       options
     )
       .then((response) => response.json())
@@ -166,7 +170,7 @@ export const showBooksInWishList = async (user) => {
 
   try {
     return await fetch(
-      `http://localhost:3002/api/users/show/${user._id}`,
+      `${API}/api/users/show/${user._id}`,
       options
     )
       .then((response) => response.json())
@@ -190,7 +194,7 @@ export const deleteBookFromWishListUser = async (user) => {
   };
   try {
     return await fetch(
-      `http://localhost:3002/api/users/deleteBook/${user._id}`,
+      `${API}/api/users/deleteBook/${user._id}`,
       options
     )
       .then((response) => response.json())
