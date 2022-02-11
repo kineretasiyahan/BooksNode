@@ -44,6 +44,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://127.0.0.1:3002/"
- 
+  "proxy": "https://books-node-app.herokuapp.com"
 }
