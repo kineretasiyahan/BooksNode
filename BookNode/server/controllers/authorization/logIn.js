@@ -37,8 +37,8 @@ const logIn = async (req, res) => {
         if (!isPasswordCorrect) {
             return res.status(400).json({
                 success: false,
-                message: "wrong password",
-                errors: { password: "wrong password" },
+                message: "Incorrect password",
+                errors: { password: "Incorrect password" },
                 data:null
             });
         }
