@@ -105,8 +105,7 @@ const Home = () => {
           </div>
         </div>
         <div className="home-images">
-          {currentBooks
-            .map((book, index) => {
+          {currentBooks?.map((book, index) => {
               if (index < 8) {
                 return (
                   <Image
