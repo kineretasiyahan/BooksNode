@@ -1,5 +1,0 @@
-# BooksNode
-
-### Book store
-
-

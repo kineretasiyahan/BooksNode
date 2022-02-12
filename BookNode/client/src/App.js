@@ -6,7 +6,6 @@ import AppRouter from "./components/routing/AppRouter";
 
 function App() {
   return (
-    // <Autocomplete suggestions={"Oranges", "Apples", "Banana", "Kiwi", "Mango"]}/>
       <Router>
         <AppRouter />
       </Router>
