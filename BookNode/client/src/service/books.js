@@ -1,6 +1,11 @@
+const API =
+  process.env.NODE_ENV == "production"
+    ? "https://books-node-app.herokuapp.com"
+    : "http://localhost:3002";
+
 export const getAllBooks = async () => {
   try {
-   return await fetch("http://localhost:3002/api/books")
+   return await fetch(`${API}/api/books`)
       .then((res) => res.json())
       .then((res) => {
         if (!res.data) throw res;
@@ -14,7 +19,7 @@ export const getAllBooks = async () => {
 
 export const bookById = async ({id}) => {
   try {
-   return await fetch(`/api/books/${id}`)
+   return await fetch(`${API}/api/books/${id}`)
       .then((res) => res.json())
       .then((res) => {
         if (!res.data) throw res;
