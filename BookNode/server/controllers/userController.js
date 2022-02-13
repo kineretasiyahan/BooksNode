@@ -1,8 +1,8 @@
 const { userModel, userValidate } = require("../models/userModel");
 const { bookModel } = require("../models/bookModel");
-const { formatError , isEmpty} = require("../errors function/errorsFunctions");
+const { formatError, isEmpty } = require("../errors function/errorsFunctions");
 const jwt = require("jsonwebtoken");
-const SECRET_KEY = process.env.SECRET_KEY;
+const SECRET_KEY = process.env.SECRET_KEY || "booksNode2021";
 
 const getAllUsers = async (req, res) => {
   try {
@@ -198,23 +198,23 @@ const showBooksInWishList = async (req, res) => {
   }
 };
 const deleteBook = async (req, res) => {
-  try {  
+  try {
     console.log(req.body.userId);
     isEmpty(req.body.userId);
     isEmpty(req.body.bookId);
     const book = await bookModel.findById(req.body.bookId);
-    formatError(book) 
+    formatError(book)
     const user = await userModel.findByIdAndUpdate(
       req.body.userId,
       { $pull: { books: { _id: book._id } } },
       { new: true }
     );
-    if (!user) throw new Error("the book search failed")  
+    if (!user) throw new Error("the book search failed")
     console.log(user.books.length);
     await user.save();
     delete user.password;
     const token = jwt.sign(user.toJSON(), SECRET_KEY, { expiresIn: "1d" });
-   
+
     res.status(200).json({
       success: true,
       message: "success to update user book!",
