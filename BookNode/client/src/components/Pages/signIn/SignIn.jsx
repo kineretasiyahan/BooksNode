@@ -15,7 +15,6 @@ const SignInForm = () => {
     password: "",
   });
   const [userIn, setUserIn] = useState({});
-  const [errorLoginHa, setErrorLoginHa] = useState({});
   const { dispatch } = useContext(Context);
 
   const handelInput = (e) => {
