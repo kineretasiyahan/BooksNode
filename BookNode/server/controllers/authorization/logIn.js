@@ -1,7 +1,7 @@
 const { userModel } = require('../../models/userModel')
 const jwt = require("jsonwebtoken");
 const bycrypt = require("bcryptjs");
-const SECRET_KEY = process.env.SECRET_KEY;
+const SECRET_KEY = process.env.SECRET_KEY || "booksNode2021" ;
 
 const logIn = async (req, res) => {
     // בודקים שהסיסמה והאיימל שקיבלנו מהקליינט כן קיימים
