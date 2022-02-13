@@ -229,6 +229,36 @@ const deleteBook = async (req, res) => {
   }
 };
 
+const deleteBookInWishList = async (req, res) => {
+  try {
+    isEmpty(req.body.userId);
+    isEmpty(req.body.bookId);
+    const book = await bookModel.findById(req.body.bookId);
+    formatError(book)
+    const user = await userModel.findByIdAndUpdate(
+      req.body.userId,
+      { $pull: { wishList: { _id: book._id } } },
+      { new: true }
+    );
+    if (!user) throw new Error("the book search failed")
+    await user.save();
+    delete user.password;
+    const token = jwt.sign(user.toJSON(), SECRET_KEY, { expiresIn: "1d" });
+
+    res.status(200).json({
+      success: true,
+      message: "success to update user book!",
+      data: token,
+    });
+  } catch (err) {
+    res.status(400).json({
+      success: false,
+      message: "failed to update user book!",
+      data: err.message,
+    });
+  }
+};
+
 module.exports = {
   getAllUsers,
   createUser,
@@ -240,4 +270,5 @@ module.exports = {
   deleteBook,
   addBookToWishListUser,
   showBooksInWishList,
+  deleteBookInWishList
 };
