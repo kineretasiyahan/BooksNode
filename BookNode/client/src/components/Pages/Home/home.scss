@@ -38,7 +38,6 @@
   flex-wrap: wrap;
   // width: 100vw;
   // height: 100vh;
-  
 }
 
 .home-search {
@@ -48,7 +47,7 @@
   height: 100%;
   width: 100%;
   padding: 10px;
-  
+
   // background-color: rgb(12, 12, 11);
   // background-color: rgb(34, 33, 33);
   background-color: $mainColor;
@@ -77,12 +76,11 @@
   align-items: center;
   justify-content: space-between;
   margin-left: 10px;
-  
 
   > a {
     position: relative;
     font-size: 25px;
-    margin-left:15px;
+    margin-left: 15px;
     text-decoration: none;
     color: rgb(255, 255, 255);
     font-weight: 800;
@@ -92,10 +90,18 @@
     }
   }
 
-  > a >.userInfo{
+  > a > .userInfo {
     // position: absolute;
     margin: -12px;
     padding: 10px;
     font-size: 15px;
+  }
+}
+@media screen and (max-width: 650px) {
+  .home-images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
